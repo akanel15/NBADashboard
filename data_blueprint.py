@@ -3,6 +3,12 @@ from flask import Blueprint, Flask, render_template, request, jsonify, make_resp
 data = Blueprint('data', __name__, template_folder='templates')
 
 
-@data.route("/meme")
+@data.route("/getdata")
 def test():
-    print("h")
+    #put the data into the array which you want to render on the page
+    
+    array = []
+
+    res = make_response(jsonify(array), 200)
+
+    return res
