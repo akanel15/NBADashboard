@@ -8,9 +8,9 @@ def home():
     return render_template('main.html')
 
 @views.route("/player")
-def home():
+def home1():
     return render_template('player.html')
 
 @views.route("/team")
-def home():
+def home2():
     return render_template('team.html')
