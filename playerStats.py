@@ -6,7 +6,7 @@ nba_teams = teams.get_teams()
 # get_players returns a list of dictionaries, each representing a player.
 nba_players = players.get_players()
 teamDash = teamplayerdashboard.TeamPlayerDashboard('1610612747').get_data_frames()[1]
-print(teamDash)
+print(teamDash["PLAYER_ID"][10])
 
 print("Enter player's name to check his career stats!")
 playerToCheck = str(input())
