@@ -5,12 +5,12 @@ views = Blueprint('views', __name__, template_folder='templates')
 
 @views.route("/")
 def home():
-    return render_template('main.html')
+    return render_template('home.html')
 
 @views.route("/player")
-def home():
+def player():
     return render_template('player.html')
 
 @views.route("/team")
-def home():
+def team():
     return render_template('team.html')
