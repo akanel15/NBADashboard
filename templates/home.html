@@ -1,27 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Title and potential nav bar -->
 <div class="container">
-
-    <div class="field has-addons">
-        <p class="control">
-          <span class="select">
-            <select>
-              <option>Player</option>
-              <option>Team</option>
-            </select>
-          </span>
-        </p>
-        <p class="control is-expanded">
-          <input class="input" type="text" placeholder="">
-        </p>
-        <p class="control">
-          <a class="button" onclick="stage()">
-            Search
-          </a>
-        </p>
-    </div>
-
+  <h1 class="title is-1">
+    Welcome to NBA Statistics
+  </h1>
+  <p class="subtitle is-4">
+    Made for NBA fans!
+  </p>
 </div>
 
+<section class="section is-large">
+  <div class="tile is-ancestor">
+    <div class="tile is-3 is-parent"></div>
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <p class="title is-4">
+            Search for Statistics based on Players or Teams
+          </p>
+          <div class="field has-addons">
+              <p class="control">
+                <span class="select">
+                  <select>
+                    <option>Player</option>
+                    <option>Team</option>
+                  </select>
+                </span>
+              </p>
+              <p class="control is-expanded">
+                <input class="input" type="text" placeholder="">
+              </p>
+              <p class="control">
+                <button type="submit" class="button is-primary" onclick="stage()">Search</button>
+              </p>
+          </div>
+        </div>
+      </div>
+    <div class="tile is-3 is-parent"></div>
+  </div>
+</section>
 {% endblock %}
