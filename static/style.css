@@ -1,9 +1,13 @@
-.main {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-  
-  .section {
-    flex: 1;
-  }
+html {
+  overflow-y: hidden
+}
+
+#body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1;
+}
