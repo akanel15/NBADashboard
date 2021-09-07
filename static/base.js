@@ -18,7 +18,6 @@ function changeTheme() {
 
 function initialiseTheme() {
     theme = localStorage.getItem("theme")
-    console.log(theme)
     link = ""
 
     if (theme == "light") {
