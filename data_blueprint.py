@@ -1,4 +1,5 @@
 from flask import Blueprint, Flask, render_template, request, jsonify, make_response
+from playerStats import player_info
 
 data = Blueprint('data', __name__, template_folder='templates')
 
@@ -7,9 +8,10 @@ data = Blueprint('data', __name__, template_folder='templates')
 def test():
     #put the data into the array which you want to render on the page
     array = request.get_json()
-    print(array)
+    data = player_info(array[0])
+    print(data)
 
-    res = make_response(jsonify(array), 200)
+    res = make_response(jsonify(data), 200)
 
     return res
 

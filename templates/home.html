@@ -2,6 +2,7 @@
 
 {% block content %}
 <!-- Title and potential nav bar -->
+<script type=text/javascript src="{{url_for('static', filename='home.js') }}"></script>
 <div class="container">
   <h1 class="title is-1">
     Welcome to NBA Statistics
@@ -29,7 +30,7 @@
                 </span>
               </p>
               <p class="control is-expanded">
-                <input class="input" type="text" placeholder="">
+                <input class="input" id = "Name" type="text" placeholder="">
               </p>
               <p class="control">
                 <button type="submit" class="button is-primary" onclick="stage()">Search</button>

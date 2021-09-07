@@ -47,6 +47,4 @@ def player_info(player):
 
 
 
-# LeBron James information.
-print(player_info("Stephen Curry"))
 
