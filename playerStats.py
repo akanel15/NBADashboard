@@ -5,7 +5,6 @@ from nba_api.stats.static import teams
 # get_teams returns a list of 30 dictionaries, each an NBA team.
 nba_teams = teams.get_teams()
 # get_players returns a list of dictionaries, each representing a player.
-nba_players = players.get_players()
 
 
 # print("Enter your team name in full!")
@@ -21,9 +20,24 @@ for player_id in teamDash['PLAYER_ID']:
 
 player_ActiveYears = []
 player_Points = []
+playerToCheck = "Stephen Curry"
+
+def get_ID(playerToCheck):
+    nba_players = players.get_players()
+
+    selected_player = [player for player in nba_players
+                   if player['full_name'] == playerToCheck][0]
 
 
-def player_info(pid):
+    career = playercareerstats.PlayerCareerStats(player_id=str(selected_player.get('id')))
+    #print(career)
+    res = career.get_data_frames()[0]
+    
+    return res.PLAYER_ID[0]
+
+
+def player_info(player):
+    pid = get_ID(player) 
     career = playercareerstats.PlayerCareerStats(player_id=pid)
     for year in career.get_data_frames()[0]['SEASON_ID']:
         player_ActiveYears.append(year)
@@ -32,5 +46,7 @@ def player_info(pid):
     return [player_ActiveYears, player_Points]
 
 
+
 # LeBron James information.
-print(player_info('2544'))
+print(player_info("Stephen Curry"))
+
