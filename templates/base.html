@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NBA Statistics</title>
+    <link rel="icon" sizes="any" type="image/svg+xml" href="{{ url_for('static', filename='basketball-ball-solid.svg') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="" id="theme">
+    <script type=text/javascript src="{{url_for('static', filename='base.js') }}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+  </head>
+  <body id="body">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="">
+          <span class="icon-text">
+            <span class="icon">
+              <img src="{{ url_for('static', filename='basketball-ball-solid.svg') }}">
+            </span>
+            <span>NBA Statistics</span>
+          </span>
+        </a>
+    
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="false"></span>
+          <span aria-hidden="false"></span>
+          <span aria-hidden="false"></span>
+        </a>
+      </div>
+    
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            Placeholder
+          </a>
+    
+          <a class="navbar-item">
+            Placeholder
+          </a>
+    
+        </div>
+    
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main">
+      <!-- Player stats table -->
+      <section class="section">
+        {% block content %} {% endblock %}
+      </section>
+    </main>
+
+    <!-- Theme changer button/footer -->
+    <footer class="footer">
+      <nav class="level">
+
+        <!-- Left footer items -->
+        <div class="level-left">
+          <div class="level-item">
+            <p>
+              This website was made by: Alex Kanellis, Jeremy Ong, Luke Bonso, Zhongxun Pan
+            </p>
+          </div>
+        </div>
+
+        <!-- Right footer items -->
+        <div class="level-right">
+
+          <!-- Gitlab Icon -->
+          <div class="level-item">
+            <a href="https://git.infotech.monash.edu/fit2101-s2-2021-projects">
+            <button class="button">
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21.94 13.11L20.89 9.89C20.89 9.86 20.88 9.83 20.87 9.8L18.76 3.32C18.65 3 18.33 2.75 17.96 2.75C17.6 2.75 17.28 3 17.17 3.33L15.17 9.5H8.84L6.83 3.33C6.72 3 6.4 2.75 6.04 2.75H6.04C5.67 2.75 5.35 3 5.24 3.33L3.13 9.82C3.13 9.82 3.13 9.83 3.13 9.83L2.06 13.11C1.9 13.61 2.07 14.15 2.5 14.45L11.72 21.16C11.89 21.28 12.11 21.28 12.28 21.15L21.5 14.45C21.93 14.15 22.1 13.61 21.94 13.11M8.15 10.45L10.72 18.36L4.55 10.45M13.28 18.37L15.75 10.78L15.85 10.45H19.46L13.87 17.61M17.97 3.94L19.78 9.5H16.16M14.86 10.45L13.07 15.96L12 19.24L9.14 10.45M6.03 3.94L7.84 9.5H4.23M3.05 13.69C2.96 13.62 2.92 13.5 2.96 13.4L3.75 10.97L9.57 18.42M20.95 13.69L14.44 18.42L14.46 18.39L20.25 10.97L21.04 13.4C21.08 13.5 21.04 13.62 20.95 13.69" />
+              </svg>
+            </button>
+          </a>
+          </div>
+
+
+          <div class="level-item">
+            <!-- Dark Mode Button -->
+            <a class="button" onclick="changeTheme()">
+              <span class="icon">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" />
+                </svg>
+              </span>
+            </a>
+          </div>
+
+        </div>
+      </nav>
+      
+    </footer>
+
+  </body>
+</html>

@@ -4,11 +4,35 @@
     <meta charset="utf-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <title> NBA Chart </title>
+    <style>
+      .chartArea {
+        width: 700px
+      }
+      .buttonArea {
+        width: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        padding: 5px 10px;
+        margin: 5px;
+        background: grey;
+        color: white;
+        border-radius: 20px;
+      }
+    </style>
   </head>
   <body>
-    <div>
+    <div class = "chartArea">
       <canvas id="myChart"></canvas>
     </div>
+    <div class = "buttonArea">
+      <button onclick="toggleData(0)">Points</button>
+      <button onclick="toggleData(1)">Assists</button>
+      <button onclick="toggleData(2)">Rebounds</button>
+    </div>
+
 
   <script>
     let myChart = document.getElementById("myChart");
@@ -21,24 +45,102 @@
           labels: ['2016','2017','2018','2019','2020','2021'],
           datasets:[{
               label: 'Points',
-              backgroundColor: "green",
-              borderWidth: 1,
-              borderColor: '#777',
-              hoverBorderWidth: 3,
-              hoverBorderColor: "#777",
-
               data: [7, 10, 5, 12, 20, 23],
-          }]
+              backgroundColor:[
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              borderWidth: 1,
+              borderColor:[
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              hoverBorderWidth: 3,
+              hoverBorderColor: "#777"
+          },
+          {
+              label: 'Assists',
+              data: [7, 10, 5, 12, 20, 23],
+              backgroundColor:[
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              borderWidth: 1,
+              borderColor:[
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              hoverBorderWidth: 3,
+              hoverBorderColor: "#777"
+          },
+          {
+              label: 'Rebounds',
+              data: [7, 10, 5, 12, 20, 23],
+              backgroundColor:[
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              borderWidth: 1,
+              borderColor:[
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              hoverBorderWidth: 3,
+              hoverBorderColor: "#777"
+          }
+        ]
         },
         options:{
           title:{
             display: true,
             text: "Custom Chart Title"
-            
           }
         }
 
     });
+
+    function toggleData(index)
+    {
+      let vis = myGraph.isDatasetVisible(index);
+      if(vis === true)
+        {
+          myGraph.hide(index);
+        }
+      else if(vis === false)
+      {
+        myGraph.show(index);
+      }
+    }
 
   </script>
   </body>
