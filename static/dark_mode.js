@@ -1,6 +1,3 @@
-console.log("hi world");
-
-
 function changeTheme() {
     resTheme = "";
     lightTheme = "https://unpkg.com/bulmaswatch/flatly/bulmaswatch.min.css";

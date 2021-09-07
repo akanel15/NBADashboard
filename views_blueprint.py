@@ -14,3 +14,7 @@ def player():
 @views.route("/team")
 def team():
     return render_template('team.html')
+
+@views.route("/temp")
+def main():
+    return render_template('main.html')
