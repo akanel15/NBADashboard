@@ -18,8 +18,6 @@ playerId_List = []
 for player_id in teamDash['PLAYER_ID']:
     playerId_List.append(player_id)
 
-player_ActiveYears = []
-player_Points = []
 playerToCheck = "Stephen Curry"
 
 def get_ID(playerToCheck):
@@ -30,19 +28,21 @@ def get_ID(playerToCheck):
 
 
     career = playercareerstats.PlayerCareerStats(player_id=str(selected_player.get('id')))
-    #print(career)
     res = career.get_data_frames()[0]
     
     return res.PLAYER_ID[0]
 
 
 def player_info(player):
+    player_ActiveYears = []
+    player_Points = []
     pid = get_ID(player) 
     career = playercareerstats.PlayerCareerStats(player_id=pid)
     for year in career.get_data_frames()[0]['SEASON_ID']:
         player_ActiveYears.append(year)
     for pts in career.get_data_frames()[0]['PTS']:
         player_Points.append(pts)
+    
     return [player_ActiveYears, player_Points]
 
 

@@ -8,6 +8,7 @@ data = Blueprint('data', __name__, template_folder='templates')
 def test():
     #put the data into the array which you want to render on the page
     array = request.get_json()
+    data = []
     data = player_info(array[0])
     print("new")
     print(data)
