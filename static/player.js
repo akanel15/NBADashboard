@@ -21,5 +21,5 @@ fetch('/getdata', {
 });;
 
 function player_page_functionality(data){
-    console.log(data)
+  window.localStorage.setItem('player_data', JSON.stringify(data));
 }

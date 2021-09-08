@@ -30,7 +30,6 @@ def get_ID(playerToCheck):
 
 
     career = playercareerstats.PlayerCareerStats(player_id=str(selected_player.get('id')))
-    #print(career)
     res = career.get_data_frames()[0]
     
     return res.PLAYER_ID[0]
