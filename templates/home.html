@@ -1,39 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Title and potential nav bar -->
 <script type=text/javascript src="{{url_for('static', filename='home.js') }}"></script>
-
-
-<!-- <section class="section is-large">
-  <div class="tile is-ancestor">
-    <div class="tile is-3 is-parent"></div>
-      <div class="tile is-parent">
-        <div class="tile is-child box">
-          <p class="title is-4">
-            Search for Statistics based on Players or Teams
-          </p>
-          <div class="field has-addons">
-              <p class="control">
-                <span class="select">
-                  <select>
-                    <option>Player</option>
-                    <option>Team</option>
-                  </select>
-                </span>
-              </p>
-              <p class="control is-expanded">
-                <input class="input" id = "Name" type="text" placeholder="">
-              </p>
-              <p class="control">
-                <button type="submit" class="button is-primary" onclick="stage()">Search</button>
-              </p>
-          </div>
-        </div>
-      </div>
-    <div class="tile is-3 is-parent"></div>
-  </div>
-</section> -->
 
 <section class="hero is-primary is-fullheight-with-navbar">
   <!-- Top of Hero -->
@@ -82,39 +50,4 @@
     </div>
   </div>
 </section>
-
-<!--       <div class="columns">
-        <div class="column"></div>
-        <div class="column is-two-thirds">
-      
-          <p class="title is-4">
-            Search for Statistics based on Players or Teams
-          </p>
-          <div class="field has-addons">
-              <p class="control">
-                <span class="select is-info">
-                  <select>
-                    <option>Player</option>
-                    <option>Team</option>
-                  </select>
-                </span>
-              </p>
-              <p class="control is-expanded">
-                <input class="input" id = "Name" type="text" placeholder="">
-              </p>
-              <p class="control">
-                <button type="submit" class="button is-info" onclick="stage()">Search</button>
-              </p>
-          </div>
-        </div>
-        <div class="column"></div>
-      </div>
- -->
-<!-- <section class="hero is-link is-fullheight-with-navbar">
-  <div class="hero-body">
-    <p class="title">
-      Fullheight hero with navbar
-    </p>
-  </div>
-</section> -->
 {% endblock %}
