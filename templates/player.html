@@ -10,38 +10,48 @@
 <section class="hero is-primary">
   <div class="hero-body">
     <p class="title">
-      Primary hero
+      Stephen Curry
     </p>
     <p class="subtitle">
-      Primary subtitle
+      Golden State Warriors
     </p>
   </div>
 </section>
 
+<!-- Search bar on left -->
+<section class="section is-small">
+  <nav class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+
+        <!-- Search text field -->
+        <div class="field has-addons">
+          <div class="control">
+            <input class="input" type="text" placeholder="Player name" value="Stephen Curry">
+          </div>
+          <div class="control">
+            <a class="button is-info">
+              Search
+            </a>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </nav>
+</section>
+
 <section class="section">
-<div class="container">
+  <div class="container">
 
-  <div class="tile is-ancestor">
-    <div class="tile is-vertical is-parent">
-      <div class="tile is-parent">
-        <!-- Tile 1 -->
-        <div class="tile is-child box">
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-parent">
+        <div class="tile is-parent">
+          <!-- Tile 1 -->
+          <div class="tile is-child box">
 
-          <!-- Player stats table -->
-          <div class="container">
-
-            <!-- Search text field -->
-            <div class="field has-addons">
-              <div class="control">
-                <input class="input" type="text" placeholder="Player name" value="Stephen Curry">
-              </div>
-              <div class="control">
-                <a class="button is-info">
-                  Search
-                </a>
-              </div>
-            </div>
-
+            <!-- Player stats table -->
             <table class="table">
               <thead>
                 <tr>
@@ -98,43 +108,42 @@
                 </tr>
               </tbody>
             </table>
+
+          </div>
+          <!-- Tile 2 -->
+          <div class="tile is-child box">
+
+            <p class="title">This is where rankings go</p>
+
           </div>
 
         </div>
-        <!-- Tile 2 -->
-        <div class="tile is-child box">
+        <div class="tile is-parent">
+          <!-- Tile 3 -->
+          <div class="tile is-child box">
 
-          <p class="title">This is where rankings go</p>
+            <!-- Performance Chart -->
+            <div class="chartArea">
+              <canvas id="myChart"></canvas>
+            </div>
+            <br>
+            <nav class="level">
+              <div class="level-item has-text-centered">
+                <button class="button is-link" onclick="toggleData(0)">Points</button>
+              </div>
+              <div class="level-item has-text-centered">
+                <button class="button is-danger" onclick="toggleData(1)">Assists</button>
+              </div>
+              <div class="level-item has-text-centered">
+                <button class="button is-warning" onclick="toggleData(2)">Rebounds</button>
+              </div>
+            </nav>
 
-        </div>
-
-      </div>
-      <div class="tile is-parent">
-        <!-- Tile 3 -->
-        <div class="tile is-child box">
-
-          <!-- Performance Chart -->
-          <div class="chartArea">
-            <canvas id="myChart"></canvas>
           </div>
-          <br>
-          <nav class="level">
-            <div class="level-item has-text-centered">
-              <button class="button is-link" onclick="toggleData(0)">Points</button>
-            </div>
-            <div class="level-item has-text-centered">
-              <button class="button is-danger" onclick="toggleData(1)">Assists</button>
-            </div>
-            <div class="level-item has-text-centered">
-              <button class="button is-warning" onclick="toggleData(2)">Rebounds</button>
-            </div>
-          </nav>
-
         </div>
       </div>
     </div>
   </div>
-</div>
 
 </section>
 
