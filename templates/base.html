@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="" id="theme">
     <script type=text/javascript src="{{url_for('static', filename='base.js') }}"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+
+    {% block head %} {% endblock %}
+    
   </head>
   <body id="body">
 
@@ -59,10 +62,7 @@
     </nav>
 
     <main id="main">
-      <!-- Player stats table -->
-      <section class="section">
         {% block content %} {% endblock %}
-      </section>
     </main>
 
     <!-- Theme changer button/footer -->

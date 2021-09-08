@@ -1,5 +1,5 @@
-lightTheme = "https://unpkg.com/bulmaswatch/flatly/bulmaswatch.min.css";
-darkTheme = "https://unpkg.com/bulmaswatch/darkly/bulmaswatch.min.css";
+lightTheme = "https://jenil.github.io/bulmaswatch/default/bulmaswatch.min.css";
+darkTheme = "https://jenil.github.io/bulmaswatch/cyborg/bulmaswatch.min.css";
 
 function changeTheme() {
     link = "";
