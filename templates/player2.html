@@ -1,77 +1,148 @@
-<script type=text/javascript src="{{url_for('static', filename='player.js') }}"></script>
-<p>this is the player page</p>
+<!DOCTYPE html>
+<html lang="en">
 
-{% extends 'base.html' %}
+<head>
+  <meta charset="utf-8">
+  <script type=text/javascript src="{{url_for('static', filename='player.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+  <title> NBA Chart </title>
+  <style>
+    .chartArea {
+      width: 700px
+    }
 
-{% block content %}
-    <!-- Player stats table -->
-    <div class="container">
+    .buttonArea {
+      width: 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        <!-- Search text field -->
-        <div class="field has-addons">
-        <div class="control">
-            <input class="input" type="text" placeholder="Player name" value="Stephen Curry">
-        </div>
-        <div class="control">
-            <a class="button is-info">
-            Search
-            </a>
-        </div>
-        </div>
+    button {
+      padding: 5px 10px;
+      margin: 5px;
+      background: grey;
+      color: white;
+      border-radius: 20px;
+    }
+  </style>
+</head>
 
-        <table class="table">
-        <thead>
-            <tr>
-            <th>By Year</th>
-            <th>Team</th>
-            <th><abbr title="Games Played">GP</abbr></th>
-            <th><abbr title="Minutes Played">MIN</abbr></th>
-            <th><abbr title="Points">PTS</abbr></th>
-            <th><abbr title="Field Goals Made">FGM</abbr></th>
-            <th><abbr title="Field Goals Attempted">FGA</abbr></th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-            <th>By Year</th>
-            <th>Team</th>
-            <th><abbr title="Games Played">GP</abbr></th>
-            <th><abbr title="Minutes Played">MIN</abbr></th>
-            <th><abbr title="Points">PTS</abbr></th>
-            <th><abbr title="Field Goals Made">FGM</abbr></th>
-            <th><abbr title="Field Goals Attempted">FGA</abbr></th>
-            </tr>
-        </tfoot>
-        <tbody>
-            <tr>
-            <th>2020-21</th>
-            <td><a href="https://www.nba.com/stats/team/1610612744/"><abbr title="Golden State Warriors">GSW</abbr></a></td>
-            <td>63</td>
-            <td>34.2</td>
-            <td>32.0</td>
-            <td>10.4</td>
-            <td>21.7</td>
-            </tr>
-            <tr>
-            <th>2019-20</th>
-            <td><a href="https://www.nba.com/stats/team/1610612744/"><abbr title="Golden State Warriors">GSW</abbr></a></td>
-            <td>5</td>
-            <td>27.9</td>
-            <td>20.8</td>
-            <td>6.6</td>
-            <td>16.4</td>
-            </tr>
-            <tr>
-            <th>2018-19</th>
-            <td><a href="https://www.nba.com/stats/team/1610612744/"><abbr title="Golden State Warriors">GSW</abbr></a></td>
-            <td>69</td>
-            <td>33.8</td>
-            <td>27.3</td>
-            <td>9.2</td>
-            <td>19.4</td>
-            </tr>
-        </tbody>
-        </table>
-    </div>
+<body>
+  <div class="chartArea">
+    <canvas id="myChart"></canvas>
+  </div>
+  <div class="buttonArea">
+    <button onclick="toggleData(0)">Points</button>
+    <button onclick="toggleData(1)">Assists</button>
+    <button onclick="toggleData(2)">Rebounds</button>
+  </div>
 
-{% endblock %}
+
+  <script>
+    let myChart = document.getElementById("myChart");
+
+    let myGraph = new Chart(myChart, {
+      type: "bar", //"line"
+      data: {
+        labels: ['2016', '2017', '2018', '2019', '2020', '2021'],
+        datasets: [{
+          label: 'Points',
+          data: [7, 10, 5, 12, 20, 23],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+          ],
+          borderWidth: 1,
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+          ],
+          hoverBorderWidth: 3,
+          hoverBorderColor: "#777"
+        },
+        {
+          label: 'Assists',
+          data: [7, 10, 5, 12, 20, 23],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+          ],
+          borderWidth: 1,
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+          ],
+          hoverBorderWidth: 3,
+          hoverBorderColor: "#777"
+        },
+        {
+          label: 'Rebounds',
+          data: [7, 10, 5, 12, 20, 23],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+          ],
+          borderWidth: 1,
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+          ],
+          hoverBorderWidth: 3,
+          hoverBorderColor: "#777"
+        }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Custom Chart Title"
+        }
+      }
+
+    });
+
+    function toggleData(index) {
+      let vis = myGraph.isDatasetVisible(index);
+      if (vis === true) {
+        myGraph.hide(index);
+      }
+      else if (vis === false) {
+        myGraph.show(index);
+      }
+    }
+
+  </script>
+</body>
+
+</html>

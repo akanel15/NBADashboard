@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block head %}
 <script type=text/javascript src="{{url_for('static', filename='home.js') }}"></script>
+{% endblock %}
 
+{% block content %}
 <section class="hero is-primary is-fullheight-with-navbar">
   <!-- Top of Hero -->
   <div class="hero-head">
