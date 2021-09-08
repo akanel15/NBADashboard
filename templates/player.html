@@ -148,6 +148,7 @@
 </section>
 
 <script>
+
   let player_data = JSON.parse(window.localStorage.getItem('player_data'));
   window.localStorage.clear();
   seasons = player_data[0]
@@ -219,17 +220,18 @@
 
   });
 
-function toggleData(index)
-{
-  let vis = myGraph.isDatasetVisible(index);
-  if(vis === true)
-    {
-      myGraph.hide(index);
-    }
-  else if(vis === false)
+  function toggleData(index)
   {
-    myGraph.show(index);
-  }
-}  
+    let vis = myGraph.isDatasetVisible(index);
+    if(vis === true)
+      {
+        myGraph.hide(index);
+      }
+    else if(vis === false)
+    {
+      myGraph.show(index);
+    }
+  }  
 
 </script>
+{% endblock %}
