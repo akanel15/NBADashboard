@@ -58,4 +58,15 @@ def player_info(player):
         player_Blocks.append(blk)
 
     return [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
-            player_Blocks]
+            player_Blocks, division(player_Points, player_Gameplayed), division(player_Rebounds, player_Gameplayed),
+            division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
+            division(player_Blocks, player_Gameplayed)]
+
+def division(list1, list2):
+    res = [0] * len(list1)
+    for i in range(len(list1)):
+        res[i] = list1[i] / list2[i]
+    return res
+
+
+b = player_info('LeBron James')
