@@ -142,16 +142,35 @@ function toggleData(index)
 function formatTable(data) {
   var tbody = document.getElementById("tableStatsBody");
   var tablehtml = "";
+  console.log(data);
+  
+  let sub = data.slice(0,1);
+  console.log(sub);
+  sub.push(data.slice(2,3)[0]);
+  console.log(sub);
+  let other = data.slice(7,12);  
+  console.log(other);
+  for (item = 0; item< other.length; item++)
+  {
+    sub.push(other[item]);
+  }
+  console.log(sub);
 
-  for (let j = 0; j < data[0].length; j++) {
+
+
+  for (let j = 0; j < sub[0].length; j++) {
     // column in dataset
     tablehtml += "<tr>";
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < sub.length; i++) {
       // row in dataset
       if (i == 0) {
-        tablehtml += "<th>" + data[i][j] + "</th>";
+        tablehtml += "<th>" + sub[i][j] + "</th>";
       } else {
-        tablehtml += "<td>" + data[i][j] + "</td>";
+        num = sub[i][j];
+        console.log(num);
+        
+        num = Math.round(num * 10) / 10;
+        tablehtml += "<td>" + num + "</td>";
       }
     }
     tablehtml += "</tr>";
