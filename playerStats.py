@@ -18,7 +18,16 @@ def players_in_the_team(teamName):
     return player_name
 
 def gen_player_score(stats):
-    pass
+    scores = stats[7][len(stats[7])-1]
+    assits = stats[9][len(stats[9])-1]
+    steals = stats[10][len(stats[10])-1]
+    blocks = stats[11][len(stats[11])-1]
+    rebounds = stats[8][len(stats[8])-1]
+
+    offensive = (0.8*scores)+(0.4*assits)+(0.4*rebounds)
+    defensive = (0.8*blocks)+(0.8*steals)
+
+    return [offensive, defensive]
 
 
 def get_ID(playerName):
@@ -60,10 +69,14 @@ def player_info(player):
     for blk in career.get_data_frames()[0]['BLK']:
         player_Blocks.append(blk)
 
-    return [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
+    array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
             player_Blocks, division(player_Points, player_Gameplayed), division(player_Rebounds, player_Gameplayed),
             division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
             division(player_Blocks, player_Gameplayed)]
+    
+    array.append(gen_player_score(array))
+
+    return array
 
 def division(list1, list2):
     res = [0] * len(list1)
