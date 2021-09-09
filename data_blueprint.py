@@ -10,8 +10,6 @@ def test():
     array = request.get_json()
     data = []
     data = player_info(array[0])
-    print("new")
-    print(data)
 
     res = make_response(jsonify(data), 200)
 
