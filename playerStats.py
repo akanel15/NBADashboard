@@ -17,6 +17,9 @@ def players_in_the_team(teamName):
 
     return player_name
 
+def gen_player_score(stats):
+    pass
+
 
 def get_ID(playerName):
     nba_players = players.get_players()
