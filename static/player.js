@@ -122,8 +122,6 @@ function formatTable(data) {
     }
     tablehtml += "</tr>";
   }
-  console.log(tablehtml);
-  console.log(typeof tablehtml);
 
   tbody.outerHTML = tablehtml;
 }
