@@ -30,7 +30,13 @@ fetch("/getdata", {
 function player_page_functionality(data) {
   let player_data = data;
   seasons = player_data[0];
-  points = player_data[1];
+  av_points = player_data[7];
+  av_assists = player_data[9];
+  av_rebounds = player_data[8];
+  av_steals = player_data[10];
+  av_blocks = player_data[11];
+
+
 
   let borderColor = [
     "rgb(255, 99, 132)",
@@ -60,7 +66,7 @@ function player_page_functionality(data) {
       datasets: [
         {
           label: "Points",
-          data: points,
+          data: av_points,
           backgroundColor: backgroundColor,
           borderWidth: 1,
           borderColor: borderColor,
@@ -69,7 +75,7 @@ function player_page_functionality(data) {
         },
         {
           label: "Assists",
-          data: [7, 10, 5, 12, 20, 23, 1, 1, 1, 1, 1, 1],
+          data: av_assists,
           backgroundColor: backgroundColor,
           borderWidth: 1,
           borderColor: borderColor,
@@ -78,13 +84,31 @@ function player_page_functionality(data) {
         },
         {
           label: "Rebounds",
-          data: [7, 10, 5, 12, 20, 23, 1, 1, 1, 1, 1, 1],
+          data: av_rebounds,
           backgroundColor: backgroundColor,
           borderWidth: 1,
           borderColor: borderColor,
           hoverBorderWidth: 3,
           hoverBorderColor: "#777",
         },
+        {
+          label: "Steals",
+          data: av_steals,
+          backgroundColor: backgroundColor,
+          borderWidth: 1,
+          borderColor: borderColor,
+          hoverBorderWidth: 3,
+          hoverBorderColor: "#777",
+        },
+        {
+          label: "Blocks",
+          data: av_blocks,
+          backgroundColor: backgroundColor,
+          borderWidth: 1,
+          borderColor: borderColor,
+          hoverBorderWidth: 3,
+          hoverBorderColor: "#777",
+        }
       ],
     },
     options: {
@@ -94,16 +118,26 @@ function player_page_functionality(data) {
       },
     },
   });
-}
-
-function toggleData(index) {
-  let vis = myGraph.isDatasetVisible(index);
-  if (vis === true) {
-    myGraph.hide(index);
-  } else if (vis === false) {
-    myGraph.show(index);
+  for (let i = 1; i<= 4; i++)
+  {
+    myGraph.hide(i);
   }
 }
+
+function toggleData(index)
+{
+  for (let i =0; i <= 4; i++)
+  {
+    let vis = myGraph.isDatasetVisible(i);
+    if (vis === true)
+    {
+      myGraph.hide(i);
+    } 
+  }
+  myGraph.show(index);
+}
+
+
 
 function formatTable(data) {
   var tbody = document.getElementById("tableStatsBody");
