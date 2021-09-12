@@ -58,7 +58,10 @@ function autocomplete(inp, arr) {
       /*create a DIV element that will contain the items (values):*/
       a = document.createElement("DIV");
       a.setAttribute("id", this.id + "autocomplete-list");
-      a.setAttribute("class", "autocomplete-items");
+      a.setAttribute("class", "autocomplete-items dropdown-content");
+      a.setAttribute("style", "max-height: 13em;overflow: auto;");
+
+
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
       /*for each item in the array...*/
@@ -66,7 +69,10 @@ function autocomplete(inp, arr) {
         /*check if the item starts with the same letters as the text field value:*/
         if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
-          b = document.createElement("DIV");
+          b = document.createElement("a");
+
+          b.setAttribute("class", "dropdown-item")
+
           /*make the matching letters bold:*/
           b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
           b.innerHTML += arr[i].substr(val.length);
@@ -87,7 +93,7 @@ function autocomplete(inp, arr) {
     /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function (e) {
       var x = document.getElementById(this.id + "autocomplete-list");
-      if (x) x = x.getElementsByTagName("div");
+      if (x) var x = x.getElementsByTagName("a");
       if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,
         increase the currentFocus variable:*/
@@ -117,12 +123,12 @@ function autocomplete(inp, arr) {
       if (currentFocus >= x.length) currentFocus = 0;
       if (currentFocus < 0) currentFocus = (x.length - 1);
       /*add class "autocomplete-active":*/
-      x[currentFocus].classList.add("autocomplete-active");
+      x[currentFocus].classList.add("is-active");
     }
     function removeActive(x) {
       /*a function to remove the "active" class from all autocomplete items:*/
       for (var i = 0; i < x.length; i++) {
-        x[i].classList.remove("autocomplete-active");
+        x[i].classList.remove("is-active");
       }
     }
     function closeAllLists(elmnt) {
