@@ -21,6 +21,7 @@ fetch("/getdata", {
       window.localStorage.setItem("player_data", JSON.stringify(data));
       player_page_functionality(data); // pass data onto chartJs
       formatTable(data); // pass data to be formatted into a table
+      rankingChart();
     });
   })
   .catch(function (error) {
@@ -187,3 +188,20 @@ window.onload = (event) => {
     .getItem("current_team")
     .slice(2, -2);
 };
+
+
+
+
+// Ranking Chart
+function rankingChart() {
+  // 0 < ranking < 100
+  let ranking = 50;
+
+  let root = document.documentElement;
+  let total_outer = getComputedStyle(root).getPropertyValue("--total-outer");
+
+  root.style.setProperty("--offset-outer", total_outer - (total_outer * ranking) / 100);
+
+  document.getElementById("rank").innerText = ranking.toString();
+}
+
