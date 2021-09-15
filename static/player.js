@@ -21,7 +21,9 @@ fetch("/getdata", {
       window.localStorage.setItem("player_data", JSON.stringify(data));
       player_page_functionality(data); // pass data onto chartJs
       formatTable(data); // pass data to be formatted into a table
-      rankingChart();
+
+      let rank = 100;
+      rankingChart(rank);
     });
   })
   .catch(function (error) {
