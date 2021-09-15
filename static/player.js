@@ -193,9 +193,8 @@ window.onload = (event) => {
 
 
 // Ranking Chart
-function rankingChart() {
+function rankingChart(ranking) {
   // 0 < ranking < 100
-  let ranking = 50;
 
   let root = document.documentElement;
   let total_outer = getComputedStyle(root).getPropertyValue("--total-outer");
