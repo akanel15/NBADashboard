@@ -1,6 +1,7 @@
 from nba_api.stats.endpoints import playercareerstats, teamplayerdashboard
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
+from predict import predict
 
 
 def players_in_the_team(teamName):
@@ -73,6 +74,8 @@ def player_info(player):
             player_Blocks, division(player_Points, player_Gameplayed), division(player_Rebounds, player_Gameplayed),
             division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
             division(player_Blocks, player_Gameplayed)]
+    
+    predict(array[7])
     
     array.append(gen_player_score(array))
 
