@@ -1,3 +1,5 @@
+
+
 let myGraph = null;
 
 fetch("/getdata", {
@@ -60,6 +62,7 @@ function player_page_functionality(data) {
     "rgba(201, 203, 207, 0.2)",
   ];
 
+
   let myChart = document.getElementById("myChart");
 
   myGraph = new Chart(myChart, {
@@ -113,12 +116,6 @@ function player_page_functionality(data) {
           hoverBorderColor: "#777",
         }
       ],
-    },
-    options: {
-      title: {
-        display: true,
-        text: "Custom Chart Title",
-      },
     },
   });
   for (let i = 1; i<= 4; i++)
