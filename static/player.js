@@ -34,12 +34,12 @@ fetch("/getdata", {
 
 function player_page_functionality(data) {
   let player_data = data;
-  seasons = player_data[0];
-  av_points = player_data[7];
-  av_assists = player_data[9];
-  av_rebounds = player_data[8];
-  av_steals = player_data[10];
-  av_blocks = player_data[11];
+  let seasons = player_data[0];
+  let av_points = player_data[7];
+  let av_assists = player_data[9];
+  let av_rebounds = player_data[8];
+  let av_steals = player_data[10];
+  let av_blocks = player_data[11];
 
 
 
@@ -144,30 +144,34 @@ function formatTable(data) {
   var tablehtml = "";
   console.log(data);
   
-  let sub = data.slice(0,1);
-  console.log(sub);
-  sub.push(data.slice(2,3)[0]);
-  console.log(sub);
-  let other = data.slice(7,12);  
-  console.log(other);
-  for (item = 0; item< other.length; item++)
+  let team = data[13];
+  let seasons = data[0];
+  let ppg = data[7];
+  let apg = data[9];
+  let rpg = data[8];
+  let spg = data[10];
+  let bpg = data[11];
+  let fg_pct = data[12];
+  for (i = 0; i < fg_pct.length; i++) 
   {
-    sub.push(other[item]);
+    fg_pct[i] = fg_pct[i] * 100
   }
-  console.log(sub);
 
+  let table_dat = [seasons, team, ppg, fg_pct, apg, rpg, spg, bpg];
 
-
-  for (let j = 0; j < sub[0].length; j++) {
+  for (let j = 0; j < table_dat[0].length; j++) {
     // column in dataset
     tablehtml += "<tr>";
-    for (let i = 0; i < sub.length; i++) {
+    for (let i = 0; i < table_dat.length; i++) {
       // row in dataset
       if (i == 0) {
-        tablehtml += "<th>" + sub[i][j] + "</th>";
-      } else {
-        num = sub[i][j];
-        console.log(num);
+        tablehtml += "<th>" + table_dat[i][j] + "</th>";
+      } 
+      else if (i == 1) {
+        tablehtml += "<td>" + table_dat[i][j] + "</td>"
+      }
+      else {
+        num = table_dat[i][j];
         
         num = Math.round(num * 10) / 10;
         tablehtml += "<td>" + num + "</td>";
