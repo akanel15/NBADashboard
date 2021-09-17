@@ -7,7 +7,6 @@ build:
     image: python:3.8-alpine
     script: 
         - echo "Building"
-        - pip3 install --upgrade pip
         - python3 predict.py
 
 test:
