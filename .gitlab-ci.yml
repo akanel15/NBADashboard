@@ -8,7 +8,6 @@ build:
     script: 
         - echo "Building"
         - pip3 install --upgrade pip
-        - pip3 install --upgrade numpy
         - python3 predict.py
 
 test:
