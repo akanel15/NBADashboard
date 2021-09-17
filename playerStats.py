@@ -18,17 +18,18 @@ def players_in_the_team(teamName):
 
     return player_name
 
-def gen_player_score(stats):
-    scores = stats[7][len(stats[7])-1]
-    assits = stats[9][len(stats[9])-1]
-    steals = stats[10][len(stats[10])-1]
-    blocks = stats[11][len(stats[11])-1]
-    rebounds = stats[8][len(stats[8])-1]
-
-    offensive = (0.8*scores)+(0.4*assits)+(0.4*rebounds)
-    defensive = (0.8*blocks)+(0.8*steals)
-
-    return [offensive, defensive]
+def gen_player_score():
+    all_player = []
+    nba_players = players.get_players()
+    for player in nba_players:
+        all_player.append([player['full_name'],player['id']])
+    
+    kar_id = all_player[2][1]
+    
+    #career = playercareerstats.PlayerCareerStats(player_id=kar_id)
+    #last_yr = career.get_data_frames()[0]['SEASON_ID'][-1]
+        
+    return kar_id
 
 
 def get_ID(playerName):
@@ -84,7 +85,8 @@ def player_info(player):
     
     #predict(array[7])
     
-    array.append(gen_player_score(array))
+    array.append(gen_player_score())
+
 
     return array
 
@@ -93,6 +95,3 @@ def division(list1, list2):
     for i in range(len(list1)):
         res[i] = list1[i] / list2[i]
     return res
-
-
-b = player_info('LeBron James')
