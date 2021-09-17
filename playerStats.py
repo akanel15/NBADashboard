@@ -82,7 +82,7 @@ def player_info(player):
             division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
             division(player_Blocks, player_Gameplayed), player_fg, player_team]
     
-    predict(array[7])
+    #predict(array[7])
     
     array.append(gen_player_score(array))
 
