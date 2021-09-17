@@ -50,6 +50,8 @@ def player_info(player):
     player_Assists = []
     player_Steals = []
     player_Blocks = []
+    player_fg = []
+    player_team = []
 
     pid = get_ID(player)
 
@@ -69,11 +71,16 @@ def player_info(player):
         player_Steals.append(stl)
     for blk in career.get_data_frames()[0]['BLK']:
         player_Blocks.append(blk)
+    for team in career.get_data_frames()[0]['TEAM_ABBREVIATION']:
+        player_team.append(team)
+    for fg in career.get_data_frames()[0]['FG_PCT']:
+        player_fg.append(fg)
+
 
     array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
             player_Blocks, division(player_Points, player_Gameplayed), division(player_Rebounds, player_Gameplayed),
             division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
-            division(player_Blocks, player_Gameplayed)]
+            division(player_Blocks, player_Gameplayed), player_fg, player_team]
     
     predict(array[7])
     
