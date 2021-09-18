@@ -103,4 +103,4 @@ def division(list1, list2):
     return res
 
 
-b = player_info('LeBron James')
+b = player_info('Anthony Davis')
