@@ -97,4 +97,49 @@ def division(list1, list2):
         res[i] = list1[i] / list2[i]
     return res
 
+def offensive_rating_calc(pts, ast, reb, fg_pct):
+    MAX_PTS = 31
+    MAX_AST = 11
+    MAX_REB = 14
+    MAX_FG = 55
+
+    #pts wort 50%
+    pts = round(pts)
+
+    if pts >= MAX_PTS:
+        pts_score = 1
+    else:
+        pts_score = pts/MAX_PTS
+
+    
+    #ast worth 20%
+    ast = round(ast)
+    if ast >= MAX_AST:
+        ast_score = 1
+    else:
+        ast_score = ast/MAX_AST
+
+    #reb worth 20%
+    reb = round(reb)
+
+    if reb >= MAX_REB:
+        reb_score = 1
+    else:
+        reb_score = reb/MAX_REB
+    
+    # fg percentage worth 10%
+    fg_pct = round(fg_pct)
+
+    if fg_pct >= MAX_FG:
+        fg_score = 1
+    else:
+        fg_score = fg_pct/MAX_FG
+
+    off_factor =  pts_score * 0.5 + ast_score * 0.2 + reb_score * 0.2 + fg_score * 0.1
+    off_rating = off_factor * 100
+
+
+
 a = player_info('LeBron James')
+b = gen_player_score()
+print(b)
