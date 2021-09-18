@@ -1,7 +1,8 @@
 from nba_api.stats.endpoints import playercareerstats, teamplayerdashboard
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
-from predict import predict
+
+from predict import player_predictor
 
 
 def players_in_the_team(teamName):
@@ -18,15 +19,16 @@ def players_in_the_team(teamName):
 
     return player_name
 
-def gen_player_score(stats):
-    scores = stats[7][len(stats[7])-1]
-    assits = stats[9][len(stats[9])-1]
-    steals = stats[10][len(stats[10])-1]
-    blocks = stats[11][len(stats[11])-1]
-    rebounds = stats[8][len(stats[8])-1]
 
-    offensive = (0.8*scores)+(0.4*assits)+(0.4*rebounds)
-    defensive = (0.8*blocks)+(0.8*steals)
+def gen_player_score(stats):
+    scores = stats[7][len(stats[7]) - 1]
+    assits = stats[9][len(stats[9]) - 1]
+    steals = stats[10][len(stats[10]) - 1]
+    blocks = stats[11][len(stats[11]) - 1]
+    rebounds = stats[8][len(stats[8]) - 1]
+
+    offensive = (0.8 * scores) + (0.4 * assits) + (0.4 * rebounds)
+    defensive = (0.8 * blocks) + (0.8 * steals)
 
     return [offensive, defensive]
 
@@ -50,6 +52,8 @@ def player_info(player):
     player_Assists = []
     player_Steals = []
     player_Blocks = []
+    player_fg = []
+    player_team = []
 
     pid = get_ID(player)
 
@@ -69,17 +73,29 @@ def player_info(player):
         player_Steals.append(stl)
     for blk in career.get_data_frames()[0]['BLK']:
         player_Blocks.append(blk)
+    for team in career.get_data_frames()[0]['TEAM_ABBREVIATION']:
+        player_team.append(team)
+    for fg in career.get_data_frames()[0]['FG_PCT']:
+        player_fg.append(fg)
 
     array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
-            player_Blocks, division(player_Points, player_Gameplayed), division(player_Rebounds, player_Gameplayed),
-            division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
-            division(player_Blocks, player_Gameplayed)]
-    
-    #predict(array[7])
-    
-    array.append(gen_player_score(array))
+             player_Blocks, division(player_Points, player_Gameplayed), division(player_Rebounds, player_Gameplayed),
+             division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
+             division(player_Blocks, player_Gameplayed), player_fg, player_team]
+
+    future_season_stats = player_predictor(array[7], 0.3)
+    last_activeyear = array[0][-1][0] + array[0][-1][1] + array[0][-1][2] + array[0][-1][3]
+    next_season1_beforedash = int(last_activeyear) + 1
+    next_season1_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 2
+    next_season2_beforedash = int(last_activeyear) + 2
+    next_season2_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 3
+    next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) +
+                     '-' + str(next_season2_afterdash)]
+    array.append(next_2_season)
+    array.append(future_season_stats)
 
     return array
+
 
 def division(list1, list2):
     res = [0] * len(list1)
@@ -88,4 +104,4 @@ def division(list1, list2):
     return res
 
 
-b = player_info('LeBron James')
+b = player_info('Anthony Davis')
