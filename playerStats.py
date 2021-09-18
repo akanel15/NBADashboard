@@ -104,8 +104,6 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
     MAX_FG = 55
 
     #pts wort 50%
-    pts = round(pts)
-
     if pts >= MAX_PTS:
         pts_score = 1
     else:
@@ -113,23 +111,18 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
 
     
     #ast worth 20%
-    ast = round(ast)
     if ast >= MAX_AST:
         ast_score = 1
     else:
         ast_score = ast/MAX_AST
 
     #reb worth 20%
-    reb = round(reb)
-
     if reb >= MAX_REB:
         reb_score = 1
     else:
         reb_score = reb/MAX_REB
     
     # fg percentage worth 10%
-    fg_pct = round(fg_pct)
-
     if fg_pct >= MAX_FG:
         fg_score = 1
     else:
@@ -137,6 +130,26 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
 
     off_factor =  pts_score * 0.5 + ast_score * 0.2 + reb_score * 0.2 + fg_score * 0.1
     off_rating = off_factor * 100
+    off_rating = round(off_rating)
+
+    return off_rating
+
+def defensive_rating_calc(stl, blk):
+    #Calculated as an overall sum of both catigories to make fair
+    MAX_SUM = 3.4
+
+    tot = stl + blk
+    # stl and blk worth 100 of rating%
+    if tot >= MAX_SUM:
+        def_factor = 1
+    else:
+        def_factor = tot/MAX_SUM
+    
+    def_rating = def_factor * 100
+    def_rating = round(def_rating)
+    return def_rating
+
+    
 
 
 
