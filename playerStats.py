@@ -89,7 +89,8 @@ def player_info(player):
     next_season1_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 2
     next_season2_beforedash = int(last_activeyear) + 2
     next_season2_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 3
-    next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) + '-' + str(next_season2_afterdash)]
+    next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) +
+                     '-' + str(next_season2_afterdash)]
     array.append(next_2_season)
     array.append(future_season_stats)
 
