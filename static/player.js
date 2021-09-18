@@ -65,6 +65,19 @@ function player_page_functionality(data) {
 
   let myChart = document.getElementById("myChart");
 
+  const line = {
+    id: 'line',
+    beforeDraw(chart, args, options){
+      const{ctx, chartArea: {top, right, bottom, left, width, height}, scales:{x, y}} = chart;
+      ctx.save();
+
+      ctx.strokeStyle = 'red';
+      ctx.strokeRect(x.getPixelForValue(seasons.length-2.5), top, 0, height);
+
+      ctx.restore();
+    }
+  }
+
   myGraph = new Chart(myChart, {
     type: "bar", //"line"
     data: {
@@ -117,6 +130,7 @@ function player_page_functionality(data) {
         }
       ],
     },
+    plugins: [line]
   });
   for (let i = 1; i<= 4; i++)
   {
