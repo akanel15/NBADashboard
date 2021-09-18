@@ -72,7 +72,10 @@ function player_page_functionality(data) {
       ctx.save();
 
       ctx.strokeStyle = 'red';
-      ctx.strokeRect(x.getPixelForValue(seasons.length-2.5), top, 0, height);
+      ctx.strokeRect(x.getPixelForValue(seasons.length-2.5), top+40, 0, height-40);
+      ctx.font = "20px Georgia";
+      ctx.fillStyle = 'white';
+      ctx.fillText("Predictions", x.getPixelForValue(seasons.length-3), 50)
 
       ctx.restore();
     }
