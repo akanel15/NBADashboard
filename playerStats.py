@@ -26,10 +26,13 @@ def gen_player_score():
     
     kar_id = all_player[2][1]
     
-    #career = playercareerstats.PlayerCareerStats(player_id=kar_id)
+    career = playercareerstats.PlayerCareerStats(player_id=str(kar_id))
     #last_yr = career.get_data_frames()[0]['SEASON_ID'][-1]
-        
-    return kar_id
+
+    array = [career.get_data_frames()[0]['GP'], career.get_data_frames()[0]['PTS'], career.get_data_frames()[0]["AST"]
+             , career.get_data_frames()[0]['REB'], career.get_data_frames()[0]['FG_PCT'],
+             career.get_data_frames()[0]['STL'], career.get_data_frames()[0]['BLK']]
+    return array
 
 
 def get_ID(playerName):
@@ -84,8 +87,6 @@ def player_info(player):
             division(player_Blocks, player_Gameplayed), player_fg, player_team]
     
     #predict(array[7])
-    
-    array.append(gen_player_score())
 
 
     return array
@@ -95,3 +96,5 @@ def division(list1, list2):
     for i in range(len(list1)):
         res[i] = list1[i] / list2[i]
     return res
+
+a = player_info('LeBron James')
