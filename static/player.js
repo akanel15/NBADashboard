@@ -23,9 +23,10 @@ fetch("/getdata", {
       window.localStorage.setItem("player_data", JSON.stringify(data));
       player_page_functionality(data); // pass data onto chartJs
       formatTable(data); // pass data to be formatted into a table
-
-      let rank = 100;
-      rankingChart(rank);
+      let offensive = data[14][0];
+      let defensive = data[14][1];
+      let rank = data[14][2];
+      rankingChart(rank, offensive, defensive);
     });
   })
   .catch(function (error) {
@@ -213,7 +214,7 @@ window.onload = (event) => {
 
 
 // Ranking Chart
-function rankingChart(ranking) {
+function rankingChart(ranking, off, def) {
   // 0 < ranking < 100
 
   let root = document.documentElement;
@@ -222,5 +223,8 @@ function rankingChart(ranking) {
   root.style.setProperty("--offset-outer", total_outer - (total_outer * ranking) / 100);
 
   document.getElementById("rank").innerText = ranking.toString();
+
+  document.getElementById("off_rank").innerText = off.toString();
+  document.getElementById("def_rank").innerText = def.toString();
 }
 
