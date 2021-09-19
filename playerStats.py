@@ -29,7 +29,7 @@ def gen_player_score():
     
     ratings_arr = []
 
-    for i in range(0, 20, 1):
+    for i in range(10, 20, 1):
 
         pl_id = all_player[i][1]
      
@@ -138,10 +138,10 @@ def division(list1, list2):
     return res
 
 def offensive_rating_calc(pts, ast, reb, fg_pct):
-    MAX_PTS = 27
-    MAX_AST = 7
-    MAX_REB = 10
-    MAX_FG = 50
+    MAX_PTS = 28
+    MAX_AST = 8
+    MAX_REB = 11
+    MAX_FG = 0.5
 
     # pts worth 50%
     if pts >= MAX_PTS:
@@ -168,7 +168,7 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
     else:
         fg_score = fg_pct/MAX_FG
 
-    off_factor = pts_score * 0.25 + ast_score * 0.1 + reb_score * 0.1 + fg_score * 0.05 + 0.5
+    off_factor = pts_score * 0.30 + ast_score * 0.075 + reb_score * 0.075 + fg_score * 0.05 + 0.5
     off_rating = off_factor * 100
     off_rating = round(off_rating)
 
@@ -176,17 +176,24 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
 
 def defensive_rating_calc(stl, blk):
     # Calculated as an overall sum of both catigories to make fair
-    MAX_SUM = 3.4
-
-    tot = stl + blk
-    # stl and blk worth 100 of rating%
-    if tot >= MAX_SUM:
-        def_factor = 1
-    else:
-        def_factor = tot/MAX_SUM * 0.5 + 0.5
+    MAX_STL = 1.4
+    MAX_BLK = 1.4
     
+    if stl >= MAX_STL:
+        stl_score = 1
+    else:
+        stl_score = stl/MAX_STL
+
+    if blk >= MAX_BLK:
+        blk_score = 1
+    else:
+        blk_score = blk/MAX_BLK
+
+
+    def_factor = blk_score * 0.25 + stl_score * 0.25 + 0.5
     def_rating = def_factor * 100
     def_rating = round(def_rating)
+
     return def_rating
 
     
