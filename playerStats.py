@@ -30,7 +30,7 @@ def gen_player_score():
 
     ratings_arr = []
 
-    for i in range(0, 10, 1):
+    for i in range(0, 0, 1):
 
         pl_id = all_player[i][1]
      
@@ -122,14 +122,21 @@ def player_info(player):
     for fg in career.get_data_frames()[0]['FG_PCT']:
         player_fg.append(fg)
 
+    ppg = division(player_Points, player_Gameplayed)
+    rpg = division(player_Rebounds, player_Gameplayed)
+    apg = division(player_Assists, player_Gameplayed)
+    spg = division(player_Steals, player_Gameplayed)
+    bpg = division(player_Blocks, player_Gameplayed)
 
     array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
-            player_Blocks, division(player_Points, player_Gameplayed), division(player_Rebounds, player_Gameplayed),
-            division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
-            division(player_Blocks, player_Gameplayed), player_fg, player_team]
+            player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
     
     #predict(array[7])
+    off_rating = offensive_rating_calc(ppg[-1], rpg[-1], apg[-1], player_fg[-1])
+    def_rating = defensive_rating_calc(spg[-1], bpg[-1])
+    overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
 
+    array.append([off_rating, def_rating, overall_rating])
 
     return array
 
@@ -198,7 +205,3 @@ def defensive_rating_calc(stl, blk):
 
     return def_rating
 
-    
-
-b = gen_player_score()
-print(b)
