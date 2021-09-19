@@ -216,14 +216,18 @@ window.onload = (event) => {
 // Ranking Chart
 function rankingChart(ranking, off, def) {
   // 0 < ranking < 100
+  function calc_offset(tot_outer, rank) {
+    return tot_outer - (tot_outer * rank) / 100
+  }
 
   let root = document.documentElement;
   let total_outer = getComputedStyle(root).getPropertyValue("--total-outer");
 
-  root.style.setProperty("--offset-outer", total_outer - (total_outer * ranking) / 100);
+  root.style.setProperty("--offset-outer", calc_offset(total_outer, ranking));
+  root.style.setProperty("--offset-off-outer", calc_offset(total_outer, off));
+  root.style.setProperty("--offset-def-outer", calc_offset(total_outer, def));
 
   document.getElementById("rank").innerText = ranking.toString();
-
   document.getElementById("off_rank").innerText = off.toString();
   document.getElementById("def_rank").innerText = def.toString();
 }

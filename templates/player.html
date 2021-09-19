@@ -3,6 +3,7 @@
 {% block head %}
 <script type=text/javascript src="{{url_for('static', filename='player.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -66,7 +67,7 @@
                 <figcaption id="rank"></figcaption>
                 <svg width="200" height="200">
                   <circle
-                    class="inner"
+                    class="rankingInner"
                     cx="95"
                     cy="95"
                     r="85"
@@ -75,7 +76,7 @@
                 </svg>
                 <svg width="200" height="200">
                   <circle
-                    class="outer"
+                    class="rankingOuter"
                     cx="95"
                     cy="95"
                     r="85"
@@ -87,11 +88,11 @@
           <div class="container has-text-centered">
 
             <!-- Ranking Chart -->
-            <figure class="rankingChart">
+            <figure class="offensiveChart">
               <figcaption id="off_rank"></figcaption>
               <svg width="200" height="200">
                 <circle
-                  class="inner"
+                  class="offensiveInner"
                   cx="95"
                   cy="95"
                   r="85"
@@ -100,7 +101,7 @@
               </svg>
               <svg width="200" height="200">
                 <circle
-                  class="outer"
+                  class="offensiveOuter"
                   cx="95"
                   cy="95"
                   r="85"
@@ -112,11 +113,11 @@
         <div class="container has-text-centered">
 
           <!-- Ranking Chart -->
-          <figure class="rankingChart">
+          <figure class="defensiveChart">
             <figcaption id="def_rank"></figcaption>
             <svg width="200" height="200">
               <circle
-                class="inner"
+                class="defensiveInner"
                 cx="95"
                 cy="95"
                 r="85"
@@ -125,7 +126,7 @@
             </svg>
             <svg width="200" height="200">
               <circle
-                class="outer"
+                class="defensiveOuter"
                 cx="95"
                 cy="95"
                 r="85"

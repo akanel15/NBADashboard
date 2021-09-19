@@ -5,12 +5,9 @@
   --offset-outer: 0;
   --outer-colour: rgb(211, 139, 211);
   --inner-colour: #f0f0f0;
-}
 
-body {
-  background-color: #fff;
-  color: #333;
-  font-family: "Lato";
+  --offset-off-outer: 0;
+  --offset-def-outer: 0;
 }
 
 .rankingChart {
@@ -41,7 +38,7 @@ body {
   left: 0;
 }
 
-.inner {
+.rankingInner {
   fill: transparent;
   stroke: var(--inner-colour);
   stroke-width: 20;
@@ -49,7 +46,7 @@ body {
   transition: stroke-dashoffset 1s;
 }
 
-.outer {
+.rankingOuter {
   fill: transparent;
   stroke: var(--outer-colour);
   stroke-width: 20;
@@ -57,18 +54,17 @@ body {
   transition: stroke-dashoffset 1s;
 }
 
-.rankingChart:hover .outer {
+/* Overall ranking chart animation */
+.rankingChart:hover .rankingOuter {
   stroke-dashoffset: var(--total-outer) !important;
 }
-/* END Circle colors and graphic positions */
 
-/* Set the initial values for the animation */
-.rankingChart .outer {
+.rankingChart .rankingOuter {
   stroke-dashoffset: var(--offset-outer);
-  animation: show 2s;
+  animation: rankshow 2s;
 }
 
-@keyframes show {
+@keyframes rankshow {
   from {
     stroke-dashoffset: var(--total-outer);
   }
@@ -77,3 +73,135 @@ body {
     stroke-dashoffset: var(--offset-outer);
   }
 }
+
+
+.offensiveChart {
+  position: relative;
+  display: inline-block;
+  color: #999;
+  font-size: 20px;
+  text-align: center;
+  height: 190px;
+  width: 190px;
+}
+
+.offensiveChart figcaption {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 100px;
+  line-height: 50px;
+  font-size: 3rem;
+}
+
+/* END Container styles */
+.offensiveChart svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.offensiveInner {
+  fill: transparent;
+  stroke: var(--inner-colour);
+  stroke-width: 20;
+  stroke-dasharray: var(--total-outer);
+  transition: stroke-dashoffset 1s;
+}
+
+.offensiveOuter {
+  fill: transparent;
+  stroke: var(--outer-colour);
+  stroke-width: 20;
+  stroke-dasharray: var(--total-outer);
+  transition: stroke-dashoffset 1s;
+}
+
+/* Offensive ranking chart animation */
+.offensiveChart:hover .offensiveOuter {
+  stroke-dashoffset: var(--total-outer) !important;
+}
+
+.offensiveChart .offensiveOuter {
+  stroke-dashoffset: var(--offset-off-outer);
+  animation: offshow 2s;
+}
+
+@keyframes offshow {
+  from {
+    stroke-dashoffset: var(--total-outer);
+  }
+
+  to {
+    stroke-dashoffset: var(--offset-off-outer);
+  }
+}
+
+
+
+.defensiveChart {
+  position: relative;
+  display: inline-block;
+  color: #999;
+  font-size: 20px;
+  text-align: center;
+  height: 190px;
+  width: 190px;
+}
+
+.defensiveChart figcaption {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 100px;
+  line-height: 50px;
+  font-size: 3rem;
+}
+
+/* END Container styles */
+.defensiveChart svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.defensiveInner {
+  fill: transparent;
+  stroke: var(--inner-colour);
+  stroke-width: 20;
+  stroke-dasharray: var(--total-outer);
+  transition: stroke-dashoffset 1s;
+}
+
+.defensiveOuter {
+  fill: transparent;
+  stroke: var(--outer-colour);
+  stroke-width: 20;
+  stroke-dasharray: var(--total-outer);
+  transition: stroke-dashoffset 1s;
+}
+
+/* defensive ranking chart animation */
+.defensiveChart:hover .defensiveOuter {
+  stroke-dashoffset: var(--total-outer) !important;
+}
+
+.defensiveChart .defensiveOuter {
+  stroke-dashoffset: var(--offset-def-outer);
+  animation: offshow 2s;
+}
+
+@keyframes offshow {
+  from {
+    stroke-dashoffset: var(--total-outer);
+  }
+
+  to {
+    stroke-dashoffset: var(--offset-def-outer);
+  }
+}
+
