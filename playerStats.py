@@ -1,7 +1,6 @@
 from nba_api.stats.endpoints import playercareerstats, teamplayerdashboard
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
-from predict import predict
 from predict import player_predictor
 import numpy
 import math
