@@ -16,6 +16,6 @@ def player_predictor(a1, decimal):
 
     y_new = model.predict(x_new)
 
-    res = [round(y_new[0], 1), round(y_new[1], 1)]
+    res = [round(y_new[0], 3), round(y_new[1], 3)]
 
     return res

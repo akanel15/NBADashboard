@@ -92,7 +92,7 @@ def player_info(player):
                      '-' + str(next_season2_afterdash)]
     for element in next_2_season:
         array[0].append(element)
-    for i in range(7, 12):
+    for i in range(7, 13):
         future_season_stats = player_predictor(array[i], 0.3)
         for element in future_season_stats:
             array[i].append(element)
