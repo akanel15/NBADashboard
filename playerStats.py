@@ -22,14 +22,15 @@ def players_in_the_team(teamName):
 
 def gen_player_score():
     all_player = []
+    ov_arr = []
     nba_players = players.get_players()
     for player in nba_players:
         if player['is_active']:
             all_player.append([player['full_name'],player['id']])
-    
+
     ratings_arr = []
 
-    for i in range(10, 20, 1):
+    for i in range(0, 10, 1):
 
         pl_id = all_player[i][1]
      
@@ -71,8 +72,9 @@ def gen_player_score():
         overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
 
         ratings_arr.append([player_name, off_rating, def_rating, overall_rating])
+        ov_arr.append(overall_rating)
 
-    return ratings_arr
+    return [ratings_arr, ov_arr, len(all_player)]
 
 
 def get_ID(playerName):
@@ -176,8 +178,8 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
 
 def defensive_rating_calc(stl, blk):
     # Calculated as an overall sum of both catigories to make fair
-    MAX_STL = 1.4
-    MAX_BLK = 1.4
+    MAX_STL = 1.3
+    MAX_BLK = 1.3
     
     if stl >= MAX_STL:
         stl_score = 1
