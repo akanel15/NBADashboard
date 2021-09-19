@@ -1,7 +1,6 @@
 from nba_api.stats.endpoints import playercareerstats, teamplayerdashboard
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
-from predict import predict
 from predict import player_predictor
 import numpy
 import math
@@ -33,7 +32,7 @@ def gen_player_score():
 
     ratings_arr = []
 
-    for i in range(0, 0, 1):
+    for i in range(0, 2, 1):
 
         pl_id = all_player[i][1]
      
@@ -77,7 +76,7 @@ def gen_player_score():
         ratings_arr.append([player_name, off_rating, def_rating, overall_rating])
         ov_arr.append(overall_rating)
 
-    return [ratings_arr, ov_arr, len(all_player)]
+    return [ratings_arr]
 
 
 def get_ID(playerName):
@@ -133,6 +132,11 @@ def player_info(player):
 
     array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
             player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
+
+
+    off_rating = offensive_rating_calc(ppg[-1], apg[-1], rpg[-1], player_fg[-1])
+    def_rating = defensive_rating_calc(spg[-1], bpg[-1])
+    overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
     
     #predict(array[7])
 
@@ -144,9 +148,6 @@ def player_info(player):
     next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) +
                      '-' + str(next_season2_afterdash)]
     
-    off_rating = offensive_rating_calc(ppg[-1], rpg[-1], apg[-1], player_fg[-1])
-    def_rating = defensive_rating_calc(spg[-1], bpg[-1])
-    overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
 
     array.append([off_rating, def_rating, overall_rating])
     
@@ -172,20 +173,20 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
     MAX_REB = 11
     MAX_FG = 0.5
 
-    # pts worth 50%
+    # pts worth 60%
     if pts >= MAX_PTS:
         pts_score = 1
     else:
         pts_score = pts/MAX_PTS
 
     
-    # ast worth 20%
+    # ast worth 15%
     if ast >= MAX_AST:
         ast_score = 1
     else:
         ast_score = ast/MAX_AST
 
-    # reb worth 20%
+    # reb worth 15%
     if reb >= MAX_REB:
         reb_score = 1
     else:
@@ -226,5 +227,4 @@ def defensive_rating_calc(stl, blk):
     return def_rating
 
 
-b = player_info('Anthony Davis')
 
