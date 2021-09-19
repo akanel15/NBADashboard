@@ -83,7 +83,6 @@ def player_info(player):
              division(player_Assists, player_Gameplayed), division(player_Steals, player_Gameplayed),
              division(player_Blocks, player_Gameplayed), player_fg, player_team]
 
-    future_season_stats = player_predictor(array[7], 0.3)
     last_activeyear = array[0][-1][0] + array[0][-1][1] + array[0][-1][2] + array[0][-1][3]
     next_season1_beforedash = int(last_activeyear) + 1
     next_season1_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 2
@@ -91,8 +90,12 @@ def player_info(player):
     next_season2_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 3
     next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) +
                      '-' + str(next_season2_afterdash)]
-    array.append(next_2_season)
-    array.append(future_season_stats)
+    for element in next_2_season:
+        array[0].append(element)
+    for i in range(7, 12):
+        future_season_stats = player_predictor(array[i], 0.3)
+        for element in future_season_stats:
+            array[i].append(element)
 
     return array
 
