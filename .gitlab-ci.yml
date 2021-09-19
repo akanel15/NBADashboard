@@ -4,22 +4,30 @@ stages:
 
 build:
     stage: build
-    image: python:3.8-alpine
+    image: python:3.8-slim
     script: 
         - echo "Building"
+        - pip3 install --upgrade pip
+        - pip3 install -r requirements.txt
         - python3 predict.py
 
 test:
     stage: test
-    image: python:3.8-alpine
+    image: python:3.8-slim
     script:
         - echo "Testing"
         - pip3 install --upgrade pip
+        - pip3 install -r requirements.txt
+
+        # Run Test Cases
+        # - python3 -m unittest TestPredict.py
+
+        # Run Coverage
         - pip3 install coverage
-        - python3 -m unittest TestPredict.py
         - coverage run --branch TestPredict.py
         - coverage report
         - coverage html -d coverage_reports
+
     artifacts:
         paths:
             - coverage_reports/
