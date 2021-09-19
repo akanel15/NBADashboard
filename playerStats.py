@@ -29,7 +29,7 @@ def gen_player_score():
     
     ratings_arr = []
 
-    for i in range(10):
+    for i in range(0, 20, 1):
 
         pl_id = all_player[i][1]
      
@@ -138,10 +138,10 @@ def division(list1, list2):
     return res
 
 def offensive_rating_calc(pts, ast, reb, fg_pct):
-    MAX_PTS = 31
-    MAX_AST = 11
-    MAX_REB = 14
-    MAX_FG = 55
+    MAX_PTS = 27
+    MAX_AST = 7
+    MAX_REB = 10
+    MAX_FG = 50
 
     # pts worth 50%
     if pts >= MAX_PTS:
@@ -168,7 +168,7 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
     else:
         fg_score = fg_pct/MAX_FG
 
-    off_factor = pts_score * 0.5 + ast_score * 0.2 + reb_score * 0.2 + fg_score * 0.1
+    off_factor = pts_score * 0.25 + ast_score * 0.1 + reb_score * 0.1 + fg_score * 0.05 + 0.5
     off_rating = off_factor * 100
     off_rating = round(off_rating)
 
@@ -183,7 +183,7 @@ def defensive_rating_calc(stl, blk):
     if tot >= MAX_SUM:
         def_factor = 1
     else:
-        def_factor = tot/MAX_SUM
+        def_factor = tot/MAX_SUM * 0.5 + 0.5
     
     def_rating = def_factor * 100
     def_rating = round(def_rating)
