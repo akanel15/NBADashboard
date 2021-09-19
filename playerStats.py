@@ -2,6 +2,8 @@ from nba_api.stats.endpoints import playercareerstats, teamplayerdashboard
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
 from predict import predict
+import numpy
+import math
 
 
 def players_in_the_team(teamName):
@@ -22,17 +24,55 @@ def gen_player_score():
     all_player = []
     nba_players = players.get_players()
     for player in nba_players:
-        all_player.append([player['full_name'],player['id']])
+        if player['is_active']:
+            all_player.append([player['full_name'],player['id']])
     
-    kar_id = all_player[2][1]
-    
-    career = playercareerstats.PlayerCareerStats(player_id=str(kar_id))
-    #last_yr = career.get_data_frames()[0]['SEASON_ID'][-1]
+    ratings_arr = []
 
-    array = [career.get_data_frames()[0]['GP'], career.get_data_frames()[0]['PTS'], career.get_data_frames()[0]["AST"]
-             , career.get_data_frames()[0]['REB'], career.get_data_frames()[0]['FG_PCT'],
-             career.get_data_frames()[0]['STL'], career.get_data_frames()[0]['BLK']]
-    return array
+    for i in range(20):
+
+        pl_id = all_player[i][1]
+     
+        career = playercareerstats.PlayerCareerStats(player_id=str(pl_id))
+
+        
+        gp = career.get_data_frames()[0]['GP'].values[-1]
+        pts = career.get_data_frames()[0]['PTS'].values[-1]
+        ast = career.get_data_frames()[0]['AST'].values[-1]
+        reb = career.get_data_frames()[0]['REB'].values[-1]
+        fg_pct = career.get_data_frames()[0]['FG_PCT'].values[-1]
+        stl = career.get_data_frames()[0]['STL'].values[-1]
+        blk = career.get_data_frames()[0]['BLK'].values[-1]
+
+        if pts == None:
+            pts = 0
+        if numpy.isnan(reb):
+            reb = 0
+        if ast == None:
+            ast = 0
+        if stl == None:
+            stl = 0
+        if blk == None:
+            blk = 0
+        if fg_pct == None:
+            fg_pct = 0
+
+        # Standardise values
+        ppg = pts/gp
+        apg = ast/gp
+        rpg = reb/gp
+        spg = stl/gp
+        bpg = blk/gp
+
+        #player_stats = [ppg, apg, rpg, fg_pct, spg, bpg]
+
+        off_rating = offensive_rating_calc(ppg, apg, rpg, fg_pct)
+        def_rating = defensive_rating_calc(spg, bpg)
+        overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
+
+        ratings_arr.append([off_rating, def_rating, overall_rating])
+
+    return ratings_arr
 
 
 def get_ID(playerName):
@@ -103,20 +143,20 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
     MAX_REB = 14
     MAX_FG = 55
 
-    #pts wort 50%
+    # pts worth 50%
     if pts >= MAX_PTS:
         pts_score = 1
     else:
         pts_score = pts/MAX_PTS
 
     
-    #ast worth 20%
+    # ast worth 20%
     if ast >= MAX_AST:
         ast_score = 1
     else:
         ast_score = ast/MAX_AST
 
-    #reb worth 20%
+    # reb worth 20%
     if reb >= MAX_REB:
         reb_score = 1
     else:
@@ -128,14 +168,14 @@ def offensive_rating_calc(pts, ast, reb, fg_pct):
     else:
         fg_score = fg_pct/MAX_FG
 
-    off_factor =  pts_score * 0.5 + ast_score * 0.2 + reb_score * 0.2 + fg_score * 0.1
+    off_factor = pts_score * 0.5 + ast_score * 0.2 + reb_score * 0.2 + fg_score * 0.1
     off_rating = off_factor * 100
     off_rating = round(off_rating)
 
     return off_rating
 
 def defensive_rating_calc(stl, blk):
-    #Calculated as an overall sum of both catigories to make fair
+    # Calculated as an overall sum of both catigories to make fair
     MAX_SUM = 3.4
 
     tot = stl + blk
