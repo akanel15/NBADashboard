@@ -6,7 +6,8 @@ def get_team_id(teamName):
     nba_teams = teams.get_teams()
 
     selected_team = [team for team in nba_teams
-                     if team['full_name'] == teamName][0]
+                    if team['full_name'] == teamName][0]
+
 
     teamInfo = teamyearbyyearstats.TeamYearByYearStats(team_id=str(selected_team.get('id')))
 
@@ -110,3 +111,4 @@ def get_team_info_using_teamid(teamID):
 
     return [season_played, game_played, wins, losses, win_percentage, conf_rank, po_gp, po_wins, po_losses,
             final_appearance]
+
