@@ -1,1 +1,66 @@
-<p>this is the team page</p>
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<!-- Player Banner -->
+<section class="hero is-primary">
+    <div class="hero-body">
+        <p class="title" id="teamName">{{ teamInfo['full_name'] }}</p>
+        <p class="subtitle" id="teamState">{{ teamInfo['state'] }}</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <!-- Team stats table -->
+        <table class="table is-striped is-hoverable is-fullwidth" id="tableStats">
+            <thead>
+                <tr>
+                    <th>By Year</th>
+                    <th><abbr title="Games Played">GP</abbr></th>
+                    <th>Wins</th>
+                    <th>Losses</abbr></th>
+                    <th><abbr title="Win Percentage">Win%</abbr></th>
+                    <th><abbr title="Conference Rank">CR</abbr></th>
+                    <th>po_gp?</th>
+                    <th>po_wins?</th>
+                    <th>po_losses?</th>
+                    <th><abbr title="Final Appearance">FA</abbr></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>By Year</th>
+                    <th><abbr title="Games Played">GP</abbr></th>
+                    <th>Wins</th>
+                    <th>Losses</abbr></th>
+                    <th><abbr title="Win Percentage">Win%</abbr></th>
+                    <th><abbr title="Conference Rank">CR</abbr></th>
+                    <th>po_gp?</th>
+                    <th>po_wins?</th>
+                    <th>po_losses?</th>
+                    <th><abbr title="Final Appearance">FA</abbr></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <!-- Table Contents go here -->
+                {% for j in range( teamData[0]|length ) %}
+                    <tr>
+                    {% for i in range( teamData|length ) %}
+                        <td>{{ teamData[i][j] }}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script type=text/javascript src="{{url_for('static', filename='team.js') }}"></script>
+<script type=text/javascript>
+    teamPage({{ teamData|tojson }})
+</script>
+{% endblock %}

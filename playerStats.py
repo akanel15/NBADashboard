@@ -2,8 +2,11 @@ from nba_api.stats.endpoints import playercareerstats, teamplayerdashboard
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
 from predict import predict
+from predict import player_predictor
 import numpy
 import math
+
+
 
 
 def players_in_the_team(teamName):
@@ -132,13 +135,30 @@ def player_info(player):
             player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
     
     #predict(array[7])
+
+    last_activeyear = array[0][-1][0] + array[0][-1][1] + array[0][-1][2] + array[0][-1][3]
+    next_season1_beforedash = int(last_activeyear) + 1
+    next_season1_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 2
+    next_season2_beforedash = int(last_activeyear) + 2
+    next_season2_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 3
+    next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) +
+                     '-' + str(next_season2_afterdash)]
+    
     off_rating = offensive_rating_calc(ppg[-1], rpg[-1], apg[-1], player_fg[-1])
     def_rating = defensive_rating_calc(spg[-1], bpg[-1])
     overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
 
     array.append([off_rating, def_rating, overall_rating])
+    
+    for element in next_2_season:
+        array[0].append(element)
+    for i in range(7, 13):
+        future_season_stats = player_predictor(array[i], 0.3)
+        for element in future_season_stats:
+            array[i].append(element)
 
     return array
+
 
 def division(list1, list2):
     res = [0] * len(list1)
@@ -204,4 +224,7 @@ def defensive_rating_calc(stl, blk):
     def_rating = round(def_rating)
 
     return def_rating
+
+
+b = player_info('Anthony Davis')
 
