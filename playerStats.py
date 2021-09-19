@@ -29,7 +29,7 @@ def gen_player_score():
     
     ratings_arr = []
 
-    for i in range(20):
+    for i in range(10):
 
         pl_id = all_player[i][1]
      
@@ -65,12 +65,12 @@ def gen_player_score():
         bpg = blk/gp
 
         #player_stats = [ppg, apg, rpg, fg_pct, spg, bpg]
-
+        player_name  = all_player[i][0]
         off_rating = offensive_rating_calc(ppg, apg, rpg, fg_pct)
         def_rating = defensive_rating_calc(spg, bpg)
         overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
 
-        ratings_arr.append([off_rating, def_rating, overall_rating])
+        ratings_arr.append([player_name, off_rating, def_rating, overall_rating])
 
     return ratings_arr
 
@@ -191,8 +191,5 @@ def defensive_rating_calc(stl, blk):
 
     
 
-
-
-a = player_info('LeBron James')
 b = gen_player_score()
 print(b)
