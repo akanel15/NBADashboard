@@ -180,5 +180,6 @@ def defensive_rating_calc(stl, blk):
 
     return def_rating
 
-
-
+lebron = player_info('LeBron James')
+print(lebron[8])
+print(lebron[9])
