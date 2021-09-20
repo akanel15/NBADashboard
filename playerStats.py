@@ -135,7 +135,6 @@ def player_info(player):
             player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
     
 
-
     off_rating = offensive_rating_calc(ppg[-1], apg[-1], rpg[-1], player_fg[-1])
     def_rating = defensive_rating_calc(spg[-1], bpg[-1])
     overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
@@ -153,7 +152,7 @@ def player_info(player):
 
     array.append([off_rating, def_rating, overall_rating])
 
-    if len(array[0]) == 1:
+    if len(array[0]) <= 3:
         return array
     
     for element in next_2_season:
