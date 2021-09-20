@@ -20,11 +20,11 @@ test:
         - pip3 install -r requirements.txt
 
         # Run Test Cases
-        # - python3 -m unittest TestPredict.py
+        # - python3 -m unittest pyunittest.py
 
         # Run Coverage
         - pip3 install coverage
-        - coverage run --branch TestPredict.py
+        - coverage run --branch pyunittest.py
         - coverage report
         - coverage html -d coverage_reports
 
