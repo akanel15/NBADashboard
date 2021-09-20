@@ -202,6 +202,8 @@ function formatTable(data) {
 
   tbody.outerHTML = tablehtml;
 }
+
+
 function tradeTableFormat(data)
 {
   var tbody = document.getElementById("tradeTableBody");
@@ -222,7 +224,30 @@ function tradeTableFormat(data)
       } 
       else
       {
-        tablehtml += "<td>" + closest_players[i][j] + "</td>";
+        //player score @ 1,2,3 off,def,overall
+        //compare to current player score and get difference
+
+        let difference = ""
+        let player_scores = data[14][j-1];
+        let cur_score = closest_players[i][j];
+        
+        let dif = cur_score - player_scores;
+
+        if (dif > 0)
+        {
+          //means it is better
+          //add grean up arrow + diff
+          difference = " &#8593".fontcolor("green") + String(dif).fontcolor("green");
+        }
+        else if (dif < 0)
+        {
+          //means it is worse
+          //add red down arrow + abs(diff)
+          difference = " &#8595".fontcolor("red") + String(Math.abs(dif)).fontcolor("red");
+        }
+
+    
+        tablehtml += "<td>" + closest_players[i][j] + difference + "</td>";
       }
     }
     tablehtml += "</tr>";
@@ -262,7 +287,30 @@ function formatRatingTable(num)
       } 
       else
       {
-        tablehtml += "<td>" + new_closest[i][j] + "</td>";
+        //player score @ 1,2,3 off,def,overall
+        //compare to current player score and get difference
+
+        let difference = ""
+        let player_scores = dat[14][j-1];
+        let cur_score = new_closest[i][j];
+        
+        let dif = cur_score - player_scores;
+
+        if (dif > 0)
+        {
+          //means it is better
+          //add grean up arrow + diff
+          difference = " &#8593".fontcolor("green") + String(dif).fontcolor("green");
+        }
+        else if (dif < 0)
+        {
+          //means it is worse
+          //add red down arrow + abs(diff)
+          difference = " &#8595".fontcolor("red") + String(Math.abs(dif)).fontcolor("red");
+        }
+
+    
+        tablehtml += "<td>" + new_closest[i][j] + difference + "</td>";
       }
     }
     tablehtml += "</tr>";
