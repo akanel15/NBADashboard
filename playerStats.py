@@ -3,9 +3,15 @@ from nba_api.stats.static import players
 from nba_api.stats.static import teams
 from predict import player_predictor
 from potential_trades import closest_players_by_rating
+from rating_calc import offensive_rating_calc, defensive_rating_calc
 import math
 
 
+def division(list1, list2):
+    res = [0] * len(list1)
+    for i in range(len(list1)):
+        res[i] = list1[i] / list2[i]
+    return res
 
 
 def players_in_the_team(teamName):
@@ -69,7 +75,6 @@ def player_info(player):
     for fg in career.get_data_frames()[0]['FG_PCT']:
         player_fg.append(fg)
     
-
     ppg = division(player_Points, player_Gameplayed)
     rpg = division(player_Rebounds, player_Gameplayed)
     apg = division(player_Assists, player_Gameplayed)
@@ -79,7 +84,6 @@ def player_info(player):
     array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
             player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
     
-
     off_rating = offensive_rating_calc(ppg[-1], apg[-1], rpg[-1], player_fg[-1])
     def_rating = defensive_rating_calc(spg[-1], bpg[-1])
     overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
@@ -99,87 +103,15 @@ def player_info(player):
     next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) +
                      '-' + str(next_season2_afterdash)]
     
-
-
-
     if len(array[0]) <= 3:
         return array
     
     for element in next_2_season:
         array[0].append(element)
+
     for i in range(7, 13):
         future_season_stats = player_predictor(array[i], 0.3)
         for element in future_season_stats:
             array[i].append(element)
 
     return array
-
-
-def division(list1, list2):
-    res = [0] * len(list1)
-    for i in range(len(list1)):
-        res[i] = list1[i] / list2[i]
-    return res
-
-def offensive_rating_calc(pts, ast, reb, fg_pct):
-    MAX_PTS = 28
-    MAX_AST = 8
-    MAX_REB = 11
-    MAX_FG = 0.5
-
-    # pts worth 60%
-    if pts >= MAX_PTS:
-        pts_score = 1
-    else:
-        pts_score = pts/MAX_PTS
-
-    
-    # ast worth 15%
-    if ast >= MAX_AST:
-        ast_score = 1
-    else:
-        ast_score = ast/MAX_AST
-
-    # reb worth 15%
-    if reb >= MAX_REB:
-        reb_score = 1
-    else:
-        reb_score = reb/MAX_REB
-    
-    # fg percentage worth 10%
-    if fg_pct >= MAX_FG:
-        fg_score = 1
-    else:
-        fg_score = fg_pct/MAX_FG
-
-    off_factor = pts_score * 0.30 + ast_score * 0.075 + reb_score * 0.075 + fg_score * 0.05 + 0.5
-    off_rating = off_factor * 100
-    off_rating = round(off_rating)
-
-    return off_rating
-
-def defensive_rating_calc(stl, blk):
-    # Calculated as an overall sum of both catigories to make fair
-    MAX_STL = 1.3
-    MAX_BLK = 1.3
-    
-    if stl >= MAX_STL:
-        stl_score = 1
-    else:
-        stl_score = stl/MAX_STL
-
-    if blk >= MAX_BLK:
-        blk_score = 1
-    else:
-        blk_score = blk/MAX_BLK
-
-
-    def_factor = blk_score * 0.25 + stl_score * 0.25 + 0.5
-    def_rating = def_factor * 100
-    def_rating = round(def_rating)
-
-    return def_rating
-
-lebron = player_info('LeBron James')
-print(lebron[8])
-print(lebron[9])
