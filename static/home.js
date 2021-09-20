@@ -72,7 +72,8 @@ function stage(){
         window.location.href = "/player"
     }
     else if(teams.includes(player_name)){
-        alert("Team Name Input Correctly");
+        string = "/team/" + player_name;
+        window.location.href = string;
     }
     else{
         alert("Invalid Player Input");

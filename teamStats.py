@@ -15,6 +15,7 @@ def get_team_id(teamName):
 
 
 def get_team_info(teamName):
+    print(teamName)
     team_id = get_team_id(teamName)
 
     team_stats = teamyearbyyearstats.TeamYearByYearStats(team_id=team_id).get_data_frames()[0]
@@ -111,4 +112,3 @@ def get_team_info_using_teamid(teamID):
 
     return [season_played, game_played, wins, losses, win_percentage, conf_rank, po_gp, po_wins, po_losses,
             final_appearance]
-
