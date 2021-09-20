@@ -24,6 +24,7 @@ fetch("/getdata", {
       player_page_functionality(data); // pass data onto chartJs
       formatTable(data); // pass data to be formatted into a table
       tradeTableFormat(data); // pass rankings to table to be formatted
+      show_image(data[16]);
       let offensive = data[14][0];
       let defensive = data[14][1];
       let rank = data[14][2];
@@ -381,3 +382,11 @@ function rankingChart(ranking, off, def) {
   document.getElementById("def_rank").innerText = def.toString();
 }
 
+function show_image(id)
+{
+  console.log(id);
+  console.log(document.getElementById('imagescr'));
+  let link = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/";
+  let player_link = link + String(id) + ".png";
+  document.getElementById('imagescr').src=player_link;
+}

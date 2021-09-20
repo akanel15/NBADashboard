@@ -22,6 +22,86 @@
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-parent">
         <div class="tile is-parent">
+          <!-- Tile 0 -->
+          <div class="tile is-child box">
+            <img id="imagescr">
+          </div>
+          <div class="tile is-child box">
+
+            <div>
+              <!-- Ranking Chart -->
+              <figure class="offensiveChart">
+                <figcaption id="off_rank"></figcaption>
+                <svg width="200" height="200">
+                  <circle
+                    class="offensiveInner"
+                    cx="95"
+                    cy="95"
+                    r="85"
+                    transform="rotate(-90, 95, 95)"
+                  />
+                </svg>
+                <svg width="200" height="200">
+                  <circle
+                    class="offensiveOuter"
+                    cx="95"
+                    cy="95"
+                    r="85"
+                    transform="rotate(-90, 95, 95)"
+                  />
+                </svg>
+              </figure>
+  
+            <!-- Ranking Chart -->
+            <figure class="defensiveChart">
+              <figcaption id="def_rank"></figcaption>
+              <svg width="200" height="200">
+                <circle
+                  class="defensiveInner"
+                  cx="95"
+                  cy="95"
+                  r="85"
+                  transform="rotate(-90, 95, 95)"
+                />
+              </svg>
+              <svg width="200" height="200">
+                <circle
+                  class="defensiveOuter"
+                  cx="95"
+                  cy="95"
+                  r="85"
+                  transform="rotate(-90, 95, 95)"
+                />
+              </svg>
+            </figure>
+  
+            <!-- Ranking Chart -->
+            <figure class="rankingChart">
+              <figcaption id="rank"></figcaption>
+              <svg width="200" height="200">
+                <circle
+                  class="rankingInner"
+                  cx="95"
+                  cy="95"
+                  r="85"
+                  transform="rotate(-90, 95, 95)"
+                />
+              </svg>
+              <svg width="200" height="200">
+                <circle
+                  class="rankingOuter"
+                  cx="95"
+                  cy="95"
+                  r="85"
+                  transform="rotate(-90, 95, 95)"
+                />
+              </svg>
+            </figure>
+          </div>
+            
+          </div>
+        </div>
+        <div class="tile is-parent">
           <!-- Tile 1 -->
 
           <div class="tile is-child box">
@@ -60,82 +140,8 @@
           </div>
           <!-- Tile 2 -->
           <div class="tile is-child box">
+ 
 
-            <div class="container has-text-centered">
-
-              <!-- Ranking Chart -->
-              <figure class="rankingChart">
-                <figcaption id="rank"></figcaption>
-                <svg width="200" height="200">
-                  <circle
-                    class="rankingInner"
-                    cx="95"
-                    cy="95"
-                    r="85"
-                    transform="rotate(-90, 95, 95)"
-                  />
-                </svg>
-                <svg width="200" height="200">
-                  <circle
-                    class="rankingOuter"
-                    cx="95"
-                    cy="95"
-                    r="85"
-                    transform="rotate(-90, 95, 95)"
-                  />
-                </svg>
-              </figure>
-          </div>
-          <div class="container has-text-centered">
-
-            <!-- Ranking Chart -->
-            <figure class="offensiveChart">
-              <figcaption id="off_rank"></figcaption>
-              <svg width="200" height="200">
-                <circle
-                  class="offensiveInner"
-                  cx="95"
-                  cy="95"
-                  r="85"
-                  transform="rotate(-90, 95, 95)"
-                />
-              </svg>
-              <svg width="200" height="200">
-                <circle
-                  class="offensiveOuter"
-                  cx="95"
-                  cy="95"
-                  r="85"
-                  transform="rotate(-90, 95, 95)"
-                />
-              </svg>
-            </figure>
-        </div>
-        <div class="container has-text-centered">
-
-          <!-- Ranking Chart -->
-          <figure class="defensiveChart">
-            <figcaption id="def_rank"></figcaption>
-            <svg width="200" height="200">
-              <circle
-                class="defensiveInner"
-                cx="95"
-                cy="95"
-                r="85"
-                transform="rotate(-90, 95, 95)"
-              />
-            </svg>
-            <svg width="200" height="200">
-              <circle
-                class="defensiveOuter"
-                cx="95"
-                cy="95"
-                r="85"
-                transform="rotate(-90, 95, 95)"
-              />
-            </svg>
-          </figure>
-        </div>
         <nav class="level">
           <div class="level-item has-text-centered">
             <button class="button is-danger" onclick="formatRatingTable(1)">Highest Offense</button>

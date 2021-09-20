@@ -46,6 +46,7 @@ def player_info(player):
     player_team = []
 
     pid = get_ID(player)
+    ind = int(pid)
 
     career = playercareerstats.PlayerCareerStats(player_id=pid)
 
@@ -86,6 +87,7 @@ def player_info(player):
 
     closest_players = closest_players_by_rating(player, overall_rating)
     array.append(closest_players)
+    array.append(ind)
     
     #predict(array[7])
 
