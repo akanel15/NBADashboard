@@ -3,7 +3,8 @@
 {% block head %}
 <script type=text/javascript src="{{url_for('static', filename='player.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{url_for('static', filename='player.css') }}">
+<script src="{{url_for('static', filename='sortable.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -26,9 +27,9 @@
           <div class="tile is-child box">
 
             <!-- Player stats table -->
-            <table class="table is-striped is-hoverable is-fullwidth" id="tableStats">
+            <table class="table is-striped is-hoverable is-fullwidth" id="tableStats" data-sortable>
               <thead>
-                <tr>
+                <tr class="is-clickable">
                   <th>By Year</th>
                   <th><abbr title="Team">Team</abbr></th>
                   <th><abbr title="Points Per Game">PTS</abbr></th>
@@ -40,7 +41,7 @@
                 </tr>
               </thead>
               <tfoot>
-                <tr>
+                <tr class="is-clickable">
                   <th>By Year</th>
                   <th><abbr title="Team">Team</abbr></th>
                   <th><abbr title="Points Per Game">PTS</abbr></th>
