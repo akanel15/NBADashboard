@@ -2,6 +2,7 @@ from nba_api.stats.endpoints import playercareerstats, teamplayerdashboard
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
 from predict import player_predictor
+from potential_trades import closest_players_by_rating
 import math
 
 
@@ -81,6 +82,10 @@ def player_info(player):
     off_rating = offensive_rating_calc(ppg[-1], apg[-1], rpg[-1], player_fg[-1])
     def_rating = defensive_rating_calc(spg[-1], bpg[-1])
     overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
+    array.append([off_rating, def_rating, overall_rating])
+
+    closest_players = closest_players_by_rating(player, overall_rating)
+    array.append(closest_players)
     
     #predict(array[7])
 
@@ -93,7 +98,7 @@ def player_info(player):
                      '-' + str(next_season2_afterdash)]
     
 
-    array.append([off_rating, def_rating, overall_rating])
+
 
     if len(array[0]) <= 3:
         return array
