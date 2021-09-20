@@ -1,7 +1,7 @@
 import unittest
 
 from predict import player_predictor
-from playerStats import defensive_rating_calc, offensive_rating_calc
+from rating_calc import defensive_rating_calc, offensive_rating_calc
 
 class TestPredict(unittest.TestCase):
     def test_predict_lebron_james_pts(self):

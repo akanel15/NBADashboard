@@ -17,6 +17,7 @@ test:
     script:
         - echo "Testing"
         - pip3 install --upgrade pip
+        - pip3 install nba_api
         - pip3 install -r requirements.txt
 
         # Run Test Cases
