@@ -134,9 +134,46 @@
               />
             </svg>
           </figure>
-      </div>
-      
+        </div>
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <button class="button is-danger" onclick="formatRatingTable(1)">Highest Offense</button>
           </div>
+          <div class="level-item has-text-centered">
+            <button class="button is-warning" onclick="formatRatingTable(2)">Highest Defense</button>
+          </div>
+          <div class="level-item has-text-centered">
+            <button class="button is-link" onclick="formatRatingTable(3)">Highest Overall</button>
+          </div>
+        </nav>
+        <div class="tile is-child box">
+
+          <!-- potential trade table -->
+          <table class="table is-striped is-hoverable is-fullwidth" id="tableStats">
+            <thead>
+              <tr>
+                <th>Player Name</th>
+                <th>Offensive Rating</th>
+                <th>Defensive Rating</th>
+                <th>Overall Rating</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Player Name</th>
+                <th>Offensive Rating</th>
+                <th>Defensive Rating</th>
+                <th>Overall Rating</th>
+              </tr>
+            </tfoot>
+            <tbody id="tradeTableBody">
+              <!-- Table Contents go here -->
+            </tbody>
+          </table>
+
+        </div>
+      
+      </div>
 
         </div>
         <div class="tile is-parent">

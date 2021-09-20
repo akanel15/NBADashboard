@@ -23,10 +23,12 @@ fetch("/getdata", {
       window.localStorage.setItem("player_data", JSON.stringify(data));
       player_page_functionality(data); // pass data onto chartJs
       formatTable(data); // pass data to be formatted into a table
+      tradeTableFormat(data); // pass rankings to table to be formatted
       let offensive = data[14][0];
       let defensive = data[14][1];
       let rank = data[14][2];
       rankingChart(rank, offensive, defensive);
+      
     });
   })
   .catch(function (error) {
@@ -186,7 +188,7 @@ function formatTable(data) {
         tablehtml += "<th>" + table_dat[i][j] + "</th>";
       } 
       else if (i == 1) {
-        tablehtml += "<td>" + table_dat[i][j] + "</td>"
+        tablehtml += "<td>" + table_dat[i][j] + "</td>";
       }
       else {
         num = table_dat[i][j];
@@ -200,13 +202,112 @@ function formatTable(data) {
 
   tbody.outerHTML = tablehtml;
 }
+function tradeTableFormat(data)
+{
+  var tbody = document.getElementById("tradeTableBody");
+  var tablehtml = "";
+
+  let closest_players = data[15];
+  
+  for (let i = 0; i < 10; i++) 
+  {
+    // column in dataset
+    tablehtml += "<tr>";
+    for (let j = 0; j < closest_players[0].length; j++) 
+    {
+      // row in dataset
+      if (j == 0) 
+      {
+        tablehtml += "<th>" + closest_players[i][j] + "</th>";
+      } 
+      else
+      {
+        tablehtml += "<td>" + closest_players[i][j] + "</td>";
+      }
+    }
+    tablehtml += "</tr>";
+  }
+  tbody.innerHTML = tablehtml;
+}
+
+function formatRatingTable(num)
+{
+  let dat = localStorage.getItem("player_data");
+  dat = JSON.parse(dat);
+
+  var tbody = document.getElementById("tradeTableBody");
+  var tablehtml = "";
+
+  let closest_players = dat[15];
+  sorting_by = [];
+  for (i = 0; i < closest_players.length; i++)
+  {
+    sorting_by.push(closest_players[i][num]);
+  }
+  
+  //  ort ratings based on off/def/overall and display the highest 10 for each
+  let new_closest = counting_sort(sorting_by, closest_players);
+  new_closest.reverse()
+  
+  for (let i = 0; i < 10; i++) 
+  {
+    // column in dataset
+    tablehtml += "<tr>";
+    for (let j = 0; j < new_closest[0].length; j++) 
+    {
+      // row in dataset
+      if (j == 0) 
+      {
+        tablehtml += "<th>" + new_closest[i][j] + "</th>";
+      } 
+      else
+      {
+        tablehtml += "<td>" + new_closest[i][j] + "</td>";
+      }
+    }
+    tablehtml += "</tr>";
+  }
+  tbody.innerHTML = tablehtml;
+}  
+
+
+function counting_sort(sorting_arr, init_arr)
+{
+    let m = Math.max(...sorting_arr); // find the max element to form count and position arrays
+    let count = [];
+    let pos = [];
+    for (i = 0; i < m+1; i++)
+    {
+      count.push(0)
+      pos.push(0)
+    }
+
+    for (i = 0; i < sorting_arr.length; i++)
+    {
+        count[sorting_arr[i]] += 1;
+        // determining the number of each element in the array
+    }
+
+    for (j = 1; j < count.length; j++)
+    {
+        pos[j] = pos[j-1] + count[j-1];
+        // using count array to determine the position each item will go
+    }
+
+    let output_arr = new Array(sorting_arr.length);
+
+    for (i = 0; i < sorting_arr.length; i++)
+    {
+        output_arr[pos[sorting_arr[i]]] = init_arr[i]; // finding the position that element goes and storing
+        pos[sorting_arr[i]] += 1; // incrementing the position to know where the next one will go
+    }
+
+    return output_arr      
+}
 
 window.onload = (event) => {
   document.getElementById("playerName").innerHTML = localStorage
     .getItem("current_player")
-    .slice(2, -2);
-  document.getElementById("teamName").innerHTML = localStorage
-    .getItem("current_team")
     .slice(2, -2);
 };
 
