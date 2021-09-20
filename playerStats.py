@@ -123,6 +123,7 @@ def player_info(player):
         player_team.append(team)
     for fg in career.get_data_frames()[0]['FG_PCT']:
         player_fg.append(fg)
+    
 
     ppg = division(player_Points, player_Gameplayed)
     rpg = division(player_Rebounds, player_Gameplayed)
@@ -132,6 +133,7 @@ def player_info(player):
 
     array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
             player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
+    
 
 
     off_rating = offensive_rating_calc(ppg[-1], apg[-1], rpg[-1], player_fg[-1])
@@ -150,6 +152,9 @@ def player_info(player):
     
 
     array.append([off_rating, def_rating, overall_rating])
+
+    if len(array[0]) == 1:
+        return array
     
     for element in next_2_season:
         array[0].append(element)
