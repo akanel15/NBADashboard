@@ -10,6 +10,7 @@ build:
         - pip3 install --upgrade pip
         - pip3 install -r requirements.txt
         - python3 predict.py
+        - python3 rating_calc.py
 
 test:
     stage: test
@@ -25,7 +26,7 @@ test:
 
         # Run Coverage
         - pip3 install coverage
-        - coverage run --branch pyunittest.py
+        - coverage run pyunittest.py 
         - coverage report
         - coverage html -d coverage_reports
 
