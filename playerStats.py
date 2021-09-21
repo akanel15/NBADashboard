@@ -105,6 +105,10 @@ def player_info(player):
     
     if len(array[0]) <= 3:
         return array
+
+    #add predictive stat label
+    array[13].append("Predictive")
+    array[13].append("Predictive")
     
     for element in next_2_season:
         array[0].append(element)
