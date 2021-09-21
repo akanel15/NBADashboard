@@ -7,6 +7,11 @@ class Test(unittest.TestCase):
     def test_player_predict_lessthanthreee(self):
         self.assertEqual(player_predictor([20.936708860759495, 27.1875], 0.3), [27.188, 27.188])
 
+    def test_player_predict_negativeres(self):
+        self.assertEqual(player_predictor(
+            [0.7037037037037037, 1.2285714285714286, 1.1125, 0.975, .0263157894736843, 0.95, 1.0634920634920635,
+             0.6551724137931034], 0.3), [0.247, 0])
+
     def test_predict_lebron_james_pts(self):
         self.assertEqual(player_predictor(
             [20.936708860759495, 27.1875, 31.367088607594937, 27.333333333333332, 30.0, 28.444444444444443,
