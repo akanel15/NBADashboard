@@ -93,7 +93,6 @@ def player_info(player):
     array.append(closest_players)
     array.append(ind)
     
-    #predict(array[7])
 
     last_activeyear = array[0][-1][0] + array[0][-1][1] + array[0][-1][2] + array[0][-1][3]
     next_season1_beforedash = int(last_activeyear) + 1
@@ -103,8 +102,6 @@ def player_info(player):
     next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) +
                      '-' + str(next_season2_afterdash)]
     
-    if len(array[0]) <= 3:
-        return array
 
     #add predictive stat label
     array[13].append("Predictive")
