@@ -4,6 +4,9 @@ from predict import player_predictor
 from rating_calc import defensive_rating_calc, offensive_rating_calc
 
 class Test(unittest.TestCase):
+    def test_player_predict_lessthanthreee(self):
+        self.assertEqual(player_predictor([20.936708860759495, 27.1875], 0.3), [27.188, 27.188])
+
     def test_predict_lebron_james_pts(self):
         self.assertEqual(player_predictor(
             [20.936708860759495, 27.1875, 31.367088607594937, 27.333333333333332, 30.0, 28.444444444444443,
