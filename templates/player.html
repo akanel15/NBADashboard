@@ -10,100 +10,91 @@
 {% block content %}
 <!-- Player Banner -->
 <section class="hero is-primary">
-  <div class="hero-body">
-    <p class="title" id="playerName"></p>
-    <p class="subtitle" id="teamName"></p>
+  <div class="hero-body py-0">
+
+    <nav class="level">
+      <!-- Left Side -->
+      <div class="level-left">
+        <!-- Player photo -->
+        <div class="level-item">
+          <img class="image" id="imagescr">
+
+        </div>
+
+        <!-- Player Name and team name -->
+        <div class="level-item">
+          <p class="title is-1" id="playerName"></p>
+          <p class="subtitle" id="teamName"></p>
+        </div>
+      </div>
+    </nav>
   </div>
 </section>
 
-<section class="section">
+<section class="section py-3">
   <div class="container">
 
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-parent">
         <div class="tile is-parent">
-          <!-- Tile 0 -->
           <div class="tile is-child box">
-            <img id="imagescr">
-          </div>
-          <div class="tile is-child box">
-            <div>
-              <h2 style= "float:left">Offensive Rating Defensive Rating </h2>
-              <h2 style= "float:right">Overall Rating</h2>           
-            </div>
-            <hr>
 
-            <div>
+            <nav class="level">
+
               <!-- Ranking Chart -->
-              <figure class="offensiveChart">
-                <figcaption id="off_rank"></figcaption>
-                <svg width="200" height="200">
-                  <circle
-                    class="offensiveInner"
-                    cx="95"
-                    cy="95"
-                    r="85"
-                    transform="rotate(-90, 95, 95)"
-                  />
-                </svg>
-                <svg width="200" height="200">
-                  <circle
-                    class="offensiveOuter"
-                    cx="95"
-                    cy="95"
-                    r="85"
-                    transform="rotate(-90, 95, 95)"
-                  />
-                </svg>
-              </figure>
-  
-            <!-- Ranking Chart -->
-            <figure class="defensiveChart">
-              <figcaption id="def_rank"></figcaption>
-              <svg width="200" height="200">
-                <circle
-                  class="defensiveInner"
-                  cx="95"
-                  cy="95"
-                  r="85"
-                  transform="rotate(-90, 95, 95)"
-                />
-              </svg>
-              <svg width="200" height="200">
-                <circle
-                  class="defensiveOuter"
-                  cx="95"
-                  cy="95"
-                  r="85"
-                  transform="rotate(-90, 95, 95)"
-                />
-              </svg>
-            </figure>
-  
-            <!-- Ranking Chart -->
-            <figure class="rankingChart">
-              <figcaption id="rank"></figcaption>
-              <svg width="200" height="200">
-                <circle
-                  class="rankingInner"
-                  cx="95"
-                  cy="95"
-                  r="85"
-                  transform="rotate(-90, 95, 95)"
-                />
-              </svg>
-              <svg width="200" height="200">
-                <circle
-                  class="rankingOuter"
-                  cx="95"
-                  cy="95"
-                  r="85"
-                  transform="rotate(-90, 95, 95)"
-                />
-              </svg>
-            </figure>
-          </div>
-            
+              <div class="level-item">
+                <div class="container has-text-centered">
+
+                  <p class="title is-4">Offensive Rating</p>
+                  <br>
+                  <figure class="offensiveChart">
+                    <figcaption id="off_rank"></figcaption>
+                    <svg width="200" height="200">
+                      <circle class="offensiveInner" cx="95" cy="95" r="85" transform="rotate(-90, 95, 95)" />
+                    </svg>
+                    <svg width="200" height="200">
+                      <circle class="offensiveOuter" cx="95" cy="95" r="85" transform="rotate(-90, 95, 95)" />
+                    </svg>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- Defensive Ranking Chart -->
+              <div class="level-item">
+                <div class="container has-text-centered">
+                  <p class="title is-4">Defensive Rating</p>
+                  <br>
+                  <figure class="defensiveChart">
+                    <figcaption id="def_rank"></figcaption>
+                    <svg width="200" height="200">
+                      <circle class="defensiveInner" cx="95" cy="95" r="85" transform="rotate(-90, 95, 95)" />
+                    </svg>
+                    <svg width="200" height="200">
+                      <circle class="defensiveOuter" cx="95" cy="95" r="85" transform="rotate(-90, 95, 95)" />
+                    </svg>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- Ranking Chart -->
+              <div class="level-item">
+                <div class="container has-text-centered">
+                  <p class="title is-4">Overall Rating</p>
+                  <br>
+                  <figure class="rankingChart">
+                    <figcaption id="rank"></figcaption>
+                    <svg width="200" height="200">
+                      <circle class="rankingInner" cx="95" cy="95" r="85" transform="rotate(-90, 95, 95)" />
+                    </svg>
+                    <svg width="200" height="200">
+                      <circle class="rankingOuter" cx="95" cy="95" r="85" transform="rotate(-90, 95, 95)" />
+                    </svg>
+                  </figure>
+                </div>
+              </div>
+
+            </nav>
+
           </div>
         </div>
         <div class="tile is-parent">
@@ -147,49 +138,47 @@
           <!-- Tile 2 -->
           <div class="tile is-child box">
             <h1 class="level-item has-text-centered" style="font-size:40px; font-family: Arial">Potential Trades</h1>
- 
 
-        <nav class="level">
-          <div class="level-item has-text-centered">
-            <button class="button is-danger" onclick="formatRatingTable(1)">Highest Offense</button>
+
+            <nav class="level">
+              <div class="level-item has-text-centered">
+                <button class="button is-danger" onclick="formatRatingTable(1)">Highest Offense</button>
+              </div>
+              <div class="level-item has-text-centered">
+                <button class="button is-warning" onclick="formatRatingTable(2)">Highest Defense</button>
+              </div>
+              <div class="level-item has-text-centered">
+                <button class="button is-link" onclick="formatRatingTable(3)">Highest Overall</button>
+              </div>
+            </nav>
+
+              <!-- potential trade table -->
+              <table class="table is-striped is-hoverable is-fullwidth" id="tableStats">
+                <thead>
+                  <tr>
+                    <th>Player Name</th>
+                    <th>Offensive Rating</th>
+                    <th>Defensive Rating</th>
+                    <th>Overall Rating</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Player Name</th>
+                    <th>Offensive Rating</th>
+                    <th>Defensive Rating</th>
+                    <th>Overall Rating</th>
+                  </tr>
+                </tfoot>
+                <tbody id="tradeTableBody">
+                  <!-- Table Contents go here -->
+                </tbody>
+              </table>
+
+            </div>
+
           </div>
-          <div class="level-item has-text-centered">
-            <button class="button is-warning" onclick="formatRatingTable(2)">Highest Defense</button>
-          </div>
-          <div class="level-item has-text-centered">
-            <button class="button is-link" onclick="formatRatingTable(3)">Highest Overall</button>
-          </div>
-        </nav>
-        <div class="tile is-child box">
 
-          <!-- potential trade table -->
-          <table class="table is-striped is-hoverable is-fullwidth" id="tableStats">
-            <thead>
-              <tr>
-                <th>Player Name</th>
-                <th>Offensive Rating</th>
-                <th>Defensive Rating</th>
-                <th>Overall Rating</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>Player Name</th>
-                <th>Offensive Rating</th>
-                <th>Defensive Rating</th>
-                <th>Overall Rating</th>
-              </tr>
-            </tfoot>
-            <tbody id="tradeTableBody">
-              <!-- Table Contents go here -->
-            </tbody>
-          </table>
-
-        </div>
-      
-      </div>
-
-        </div>
         <div class="tile is-parent">
           <!-- Tile 3 -->
           <div class="tile is-child box">
