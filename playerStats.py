@@ -5,12 +5,19 @@ from predict import player_predictor
 from potential_trades import closest_players_by_rating
 from rating_calc import offensive_rating_calc, defensive_rating_calc
 import math
+import numpy
 
 
 def division(list1, list2):
     res = [0] * len(list1)
+
     for i in range(len(list1)):
-        res[i] = list1[i] / list2[i]
+        if list1[i] is None or numpy.isnan(list1[i]):
+            res[i] = 0
+        elif list2[i] is None or numpy.isnan(list2[i]):
+            res[i] = 0
+        else:
+            res[i] = list1[i] / list2[i]
     return res
 
 
@@ -76,10 +83,13 @@ def player_info(player):
         player_fg.append(fg)
     
     ppg = division(player_Points, player_Gameplayed)
+    print(player_Rebounds)
     rpg = division(player_Rebounds, player_Gameplayed)
     apg = division(player_Assists, player_Gameplayed)
     spg = division(player_Steals, player_Gameplayed)
     bpg = division(player_Blocks, player_Gameplayed)
+
+    print(player_Rebounds)
 
     array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
             player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
