@@ -4,7 +4,8 @@ import math
 
 
 def player_predictor(a1, decimal):
-    if len(a1) < 3:
+
+    if len(a1) <= 3:
         res = [round(a1[len(a1)-1], 3), round(a1[len(a1)-1], 3)]
         return res
         
