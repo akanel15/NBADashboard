@@ -8,6 +8,17 @@ ensuring high versatility and usability among various different user devices. Th
 application will be built from widgets and will consist of four main components; The
 ability to view a players statistics, the ability to view a teams statistics, the ability to
 compare two players statistics and the ability to compare two teams statistics.
+
+## Product Backlog
+
+Can be found at:
+https://trello.com/b/aNmH3eQ6/fit2101-project
+
+## Meeting minutes and Sprint Retrspective
+
+Can be found in the google drive linked below
+https://drive.google.com/drive/folders/0AC-RFcRiMC5DUk9PVA
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.

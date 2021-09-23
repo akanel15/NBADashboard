@@ -17,7 +17,7 @@ def rating_calculator():
 
     ratings_arr = []
 
-    for i in range(0, 10, 1):
+    for i in range(len(all_player)):
 
         pl_id = all_player[i][1]
      

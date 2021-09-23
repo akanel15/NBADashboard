@@ -384,8 +384,7 @@ function rankingChart(ranking, off, def) {
 
 function show_image(id)
 {
-  console.log(id);
-  console.log(document.getElementById('imagescr'));
+
   let link = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/";
   let player_link = link + String(id) + ".png";
   document.getElementById('imagescr').src=player_link;
