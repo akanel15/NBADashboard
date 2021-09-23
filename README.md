@@ -28,6 +28,8 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+Project can be found at:
+https://git.infotech.monash.edu/fit2101-s2-2021-projects/zpan0008?nav_source=navbar 
 
 How to run the website:
 Terminal -> enter "py main.py" -> open the link in the terminal
