@@ -29,6 +29,9 @@ pip install -r requirements.txt
 
 ## Usage
 
+How to run the website:
+Terminal -> enter "py main.py" -> open the link in the terminal
+
 ```python
 # get LeBron James stats
 LBJ = player_info('LeBron James')
