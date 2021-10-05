@@ -6,6 +6,17 @@
 {% endblock %}
 
 {% block content %}
+
+<style>
+  #tab-content div {
+    display: none;
+  }
+
+  #tab-content div.is-active {
+    display: block;
+  }
+</style>
+
 <!-- Player Banner -->
 <section class="hero is-primary">
   <div class="hero-body py-1">
@@ -14,9 +25,10 @@
       <div class="level-left">
         <!-- Player photo -->
         <div class="level-item">
-        <div>
-          <img class="image is-128x128" src="{{ 'https://au.global.nba.com/media/img/teams/00/logos/%s_logo.svg'|format(teamInfo['abbreviation']) }}">
-        </div>
+          <div>
+            <img class="image is-128x128"
+              src="{{ 'https://au.global.nba.com/media/img/teams/00/logos/%s_logo.svg'|format(teamInfo['abbreviation']) }}">
+          </div>
         </div>
         <div class="level-item">
           <div>
@@ -25,56 +37,40 @@
           </div>
         </div>
       </div>
+    </nav>
+  </div>
+
+</section>
+<section class="section py-3">
+  <div class="tabs is-centered is-boxed" id="tabs">
+    <ul>
+      <li class="is-active" data-tab="1"><a>Statistics</a></li>
+      <li data-tab="2"><a>Players</a></li>
+    </ul>
+  </div>
+
 </section>
 
 <section class="section py-4">
-  <div class="container box">
-    <!-- Team stats table -->
-    <table class="table is-striped is-hoverable is-fullwidth" id="tableStats" data-sortable>
-      <thead>
-        <tr class="is-clickable">
-          <th>By Year</th>
-          <th><abbr title="Games Played">GP</abbr></th>
-          <th>Wins</th>
-          <th>Losses</abbr></th>
-          <th><abbr title="Win Percentage">Win%</abbr></th>
-          <th><abbr title="Conference Rank">CR</abbr></th>
-          <th><abbr title="Playoff Games Played">Playoff GP</abbr></th>
-          <th>Playoff Wins</th>
-          <th>Playoff Losses</th>
-          <th><abbr title="Finals Appearance">FA</abbr></th>
-        </tr>
-      </thead>
-      <tfoot>
-        <tr class="is-clickable">
-          <th>By Year</th>
-          <th><abbr title="Games Played">GP</abbr></th>
-          <th>Wins</th>
-          <th>Losses</abbr></th>
-          <th><abbr title="Win Percentage">Win%</abbr></th>
-          <th><abbr title="Conference Rank">CR</abbr></th>
-          <th><abbr title="Playoff Games Played">Playoff GP</abbr></th>
-          <th>Playoff Wins</th>
-          <th>Playoff Losses</th>
-          <th><abbr title="Finals Appearance">FA</abbr></th>
-        </tr>
-      </tfoot>
-      <tbody>
-        <!-- Table Contents go here -->
-        {% for j in range( teamData[0]|length ) %}
-        <tr>
-          {% for i in range( teamData|length ) %}
-          <td>{{ teamData[i][j] }}</td>
-          {% endfor %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="container box" id="tab-content">
+
+    <!-- Statistics tab content -->
+    <div class="is-active" data-content="1">
+      {% include 'teamTabStatistics.html' %}
+    </div>
+
+    <!-- Player list tab content -->
+    <div data-content="2">
+      {% include 'teamTabPlayers.html' %}
+    </div>
+
   </div>
 </section>
 
+<script src="{{url_for('static', filename='tabs.js')}}"></script>
 <script type=text/javascript src="{{url_for('static', filename='team.js') }}"></script>
 <script type=text/javascript>
     teamPage({{ teamData|tojson }})
 </script>
+
 {% endblock %}
