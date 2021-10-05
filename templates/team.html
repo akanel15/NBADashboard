@@ -39,8 +39,8 @@
       </div>
     </nav>
   </div>
-
 </section>
+
 <section class="section py-3">
   <div class="tabs is-centered is-boxed" id="tabs">
     <ul>
@@ -48,7 +48,6 @@
       <li data-tab="2"><a>Players</a></li>
     </ul>
   </div>
-
 </section>
 
 <section class="section py-4">
@@ -56,19 +55,19 @@
 
     <!-- Statistics tab content -->
     <div class="is-active" data-content="1">
-      {% include 'teamTabStatistics.html' %}
+      {% include 'team_tabs/statistics.html' %}
     </div>
 
     <!-- Player list tab content -->
     <div data-content="2">
-      {% include 'teamTabPlayers.html' %}
+      {% include 'team_tabs/player_list.html' %}
     </div>
 
   </div>
 </section>
 
 <script src="{{url_for('static', filename='tabs.js')}}"></script>
-<script type=text/javascript src="{{url_for('static', filename='team.js') }}"></script>
+<script src="{{url_for('static', filename='team.js') }}"></script>
 <script type=text/javascript>
     teamPage({{ teamData|tojson }})
 </script>
