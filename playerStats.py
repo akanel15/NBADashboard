@@ -1,6 +1,5 @@
-from nba_api.stats.endpoints import playercareerstats, teamplayerdashboard
+from nba_api.stats.endpoints import playercareerstats
 from nba_api.stats.static import players
-from nba_api.stats.static import teams
 from predict import player_predictor
 from potential_trades import closest_players_by_rating
 from rating_calc import offensive_rating_calc, defensive_rating_calc
@@ -19,21 +18,6 @@ def division(list1, list2):
         else:
             res[i] = list1[i] / list2[i]
     return res
-
-
-def players_in_the_team(teamName):
-    player_name = []
-    nba_teams = teams.get_teams()
-
-    selected_team = [team for team in nba_teams
-                     if team['full_name'] == teamName][0]
-
-    info = teamplayerdashboard.TeamPlayerDashboard(team_id=selected_team.get('id'))
-
-    for player in info.get_data_frames()[1]['PLAYER_NAME']:
-        player_name.append(player)
-
-    return player_name
 
 
 def get_ID(playerName):
@@ -81,7 +65,7 @@ def player_info(player):
         player_team.append(team)
     for fg in career.get_data_frames()[0]['FG_PCT']:
         player_fg.append(fg)
-    
+
     ppg = division(player_Points, player_Gameplayed)
     print(player_Rebounds)
     rpg = division(player_Rebounds, player_Gameplayed)
@@ -92,8 +76,8 @@ def player_info(player):
     print(player_Rebounds)
 
     array = [player_ActiveYears, player_Points, player_Gameplayed, player_Rebounds, player_Assists, player_Steals,
-            player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
-    
+             player_Blocks, ppg, rpg, apg, spg, bpg, player_fg, player_team]
+
     off_rating = offensive_rating_calc(ppg[-1], apg[-1], rpg[-1], player_fg[-1])
     def_rating = defensive_rating_calc(spg[-1], bpg[-1])
     overall_rating = math.ceil(off_rating * 0.5 + def_rating * 0.5)
@@ -102,7 +86,6 @@ def player_info(player):
     closest_players = closest_players_by_rating(player, overall_rating)
     array.append(closest_players)
     array.append(ind)
-    
 
     last_activeyear = array[0][-1][0] + array[0][-1][1] + array[0][-1][2] + array[0][-1][3]
     next_season1_beforedash = int(last_activeyear) + 1
@@ -111,12 +94,11 @@ def player_info(player):
     next_season2_afterdash = int(last_activeyear[2] + last_activeyear[3]) + 3
     next_2_season = [str(next_season1_beforedash) + '-' + str(next_season1_afterdash), str(next_season2_beforedash) +
                      '-' + str(next_season2_afterdash)]
-    
 
-    #add predictive stat label
+    # add predictive stat label
     array[13].append("Predictive")
     array[13].append("Predictive")
-    
+
     for element in next_2_season:
         array[0].append(element)
 
