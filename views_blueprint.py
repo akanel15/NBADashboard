@@ -1,7 +1,8 @@
 from flask import *
 from nba_api.stats.static import teams
-from teamStats import get_team_info, get_team_info_using_teamid
-
+from teamStats import get_team_info
+from os import listdir
+from os.path import isfile, join
 
 views = Blueprint('views', __name__, template_folder='templates')
 
