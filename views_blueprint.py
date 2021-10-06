@@ -22,4 +22,4 @@ def team(teamRequest):
     teamName = teamRequest.replace("%20", " ")
     teamData = get_team_info(teamName)
     teamInfo = teams.find_teams_by_full_name(teamName)[0]
-    return render_template('team.html', teamInfo=teamInfo, teamData=teamData)
+    return render_template('team.html', teamInfo=teamInfo, teamData=teamData[0], teamPlayers=teamData[1][0], last5Games=teamData[2], shotArea=teamData[3])

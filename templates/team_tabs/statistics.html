@@ -1,42 +1,45 @@
+<div class="block">
+      hi world
+</div>
 
-<!-- Team stats table -->
-<table class="table is-striped is-hoverable is-fullwidth" id="tableStats" data-sortable>
-  <thead>
-    <tr class="is-clickable">
-      <th>By Year</th>
-      <th><abbr title="Games Played">GP</abbr></th>
-      <th>Wins</th>
-      <th>Losses</abbr></th>
-      <th><abbr title="Win Percentage">Win%</abbr></th>
-      <th><abbr title="Conference Rank">CR</abbr></th>
-      <th><abbr title="Playoff Games Played">Playoff GP</abbr></th>
-      <th>Playoff Wins</th>
-      <th>Playoff Losses</th>
-      <th><abbr title="Finals Appearance">FA</abbr></th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr class="is-clickable">
-      <th>By Year</th>
-      <th><abbr title="Games Played">GP</abbr></th>
-      <th>Wins</th>
-      <th>Losses</abbr></th>
-      <th><abbr title="Win Percentage">Win%</abbr></th>
-      <th><abbr title="Conference Rank">CR</abbr></th>
-      <th><abbr title="Playoff Games Played">Playoff GP</abbr></th>
-      <th>Playoff Wins</th>
-      <th>Playoff Losses</th>
-      <th><abbr title="Finals Appearance">FA</abbr></th>
-    </tr>
-  </tfoot>
-  <tbody>
-    <!-- Table Contents go here -->
-    {% for j in range( teamData[0]|length ) %}
-    <tr>
-      {% for i in range( teamData|length ) %}
-      <td>{{ teamData[i][j] }}</td>
+  <!-- Team stats table -->
+  <table class="table is-striped is-hoverable is-fullwidth" id="tableStats" data-sortable>
+    <thead>
+      <tr class="is-clickable">
+        <th>By Year</th>
+        <th><abbr title="Games Played">GP</abbr></th>
+        <th>Wins</th>
+        <th>Losses</abbr></th>
+        <th><abbr title="Win Percentage">Win%</abbr></th>
+        <th><abbr title="Conference Rank">CR</abbr></th>
+        <th><abbr title="Playoff Games Played">Playoff GP</abbr></th>
+        <th>Playoff Wins</th>
+        <th>Playoff Losses</th>
+        <th><abbr title="Finals Appearance">FA</abbr></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr class="is-clickable">
+        <th>By Year</th>
+        <th><abbr title="Games Played">GP</abbr></th>
+        <th>Wins</th>
+        <th>Losses</abbr></th>
+        <th><abbr title="Win Percentage">Win%</abbr></th>
+        <th><abbr title="Conference Rank">CR</abbr></th>
+        <th><abbr title="Playoff Games Played">Playoff GP</abbr></th>
+        <th>Playoff Wins</th>
+        <th>Playoff Losses</th>
+        <th><abbr title="Finals Appearance">FA</abbr></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <!-- Table Contents go here -->
+      {% for j in range( teamData[0]|length ) %}
+      <tr>
+        {% for i in range( teamData|length ) %}
+        <td>{{ teamData[i][j] }}</td>
+        {% endfor %}
+      </tr>
       {% endfor %}
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    </tbody>
+  </table>
