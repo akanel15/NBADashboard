@@ -145,10 +145,10 @@ def get_team_info(teamName):
         fg_pct_area.append(FG_pct)
 
     return [season_played, game_played, wins, losses, win_percentage, conf_rank, po_gp, po_wins, po_losses,
-            final_appearance], \
-           [player_name], \
-           [last_5_games, w, l, w_pct, fga, fgm, fg_pct, pts, ast, reb, stl, blk, tov, plus_minus], \
-           [shot_area, fga_area, fgm_area, fg_pct_area]
+        final_appearance], \
+        [player_name], \
+        [last_5_games, w, l, w_pct, fga, fgm, fg_pct, pts, ast, reb, stl, blk, tov, plus_minus], \
+        [shot_area, fga_area, fgm_area, fg_pct_area]
 
 
 def get_team_info_using_teamid(teamID):
